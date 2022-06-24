@@ -2,16 +2,25 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Visite {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private Medecin medecin;
-	private Patient patient;
+	private transient Medecin medecin;
+	private transient Patient patient;
 	private LocalDate dateVisite;
 	private double prix=20;
 	private int salle;
 	
-	
+	public Visite() {
+	}
 	
 	public Visite(int id, Medecin medecin, Patient patient, String dateVisite, double prix, int salle) {
 		this.id = id;
