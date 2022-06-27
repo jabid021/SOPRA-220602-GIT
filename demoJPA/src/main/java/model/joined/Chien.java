@@ -1,5 +1,12 @@
 package model.joined;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+@Entity
+@PrimaryKeyJoinColumn(name="id_chien")
+@Table(name="dog")
 public class Chien extends Animal {
 
 	private String race;

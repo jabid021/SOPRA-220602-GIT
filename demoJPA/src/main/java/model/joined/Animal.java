@@ -1,11 +1,24 @@
 package model.joined;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Animal {
 
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_animal")
 	protected Integer id;
 	
+	@Column(name="carni")
 	protected boolean carnivore;
 	protected boolean herbivore;
 	

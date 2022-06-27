@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,6 +17,7 @@ public class Patient implements Serializable {
 	private String prenom;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Homme','Femme','NB')")
 	private Civilite civ;
 	
 	
