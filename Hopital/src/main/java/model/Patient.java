@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @Entity
@@ -13,13 +15,26 @@ public class Patient implements Serializable {
 	private String nom;
 	private String prenom;
 	
+	@Enumerated(EnumType.STRING)
+	private Civilite civ;
+	
 	
 	public Patient() {}
+	
 	
 	public Patient(int id, String nom, String prenom) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
+	}
+
+	
+	
+	public Patient(int id, String nom, String prenom,Civilite civ) {
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.civ=civ;
 	}
 
 
@@ -52,6 +67,15 @@ public class Patient implements Serializable {
 		this.prenom = prenom;
 	}
 
+	
+
+	public Civilite getCiv() {
+		return civ;
+	}
+
+	public void setCiv(Civilite civ) {
+		this.civ = civ;
+	}
 
 	@Override
 	public String toString() {
