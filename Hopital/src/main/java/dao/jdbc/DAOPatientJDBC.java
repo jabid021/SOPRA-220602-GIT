@@ -46,7 +46,7 @@ public class DAOPatientJDBC implements IDAOPatient{
 
 
 	@Override
-	public void insert(Patient p) {
+	public Patient insert(Patient p) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/hopital","root","");
@@ -64,10 +64,12 @@ public class DAOPatientJDBC implements IDAOPatient{
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return p;
 	}
 
 	@Override
-	public void update(Patient o) {
+	public Patient update(Patient o) {
+		return o;
 		
 	}
 

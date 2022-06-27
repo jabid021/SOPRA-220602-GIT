@@ -24,11 +24,13 @@ public class DAOCompteJDBC implements IDAOCompte {
 	}
 
 	@Override
-	public void insert(Compte o) {
+	public Compte insert(Compte o) {
+		return o;
 	}
 
 	@Override
-	public void update(Compte o) {
+	public Compte update(Compte o) {
+		return o;
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class DAOVisiteJDBC implements IDAOVisite {
 	}
 
 	@Override
-	public void insert(Visite v) {
+	public Visite insert(Visite v) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/hopital","root","");
@@ -82,10 +82,12 @@ public class DAOVisiteJDBC implements IDAOVisite {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return v;
 	}
 
 	@Override
-	public void update(Visite o) {
+	public Visite update(Visite o) {
+		return o;
 	}
 
 	@Override

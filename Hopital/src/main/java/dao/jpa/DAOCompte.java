@@ -20,15 +20,15 @@ public class DAOCompte implements IDAOCompte {
 	}
 
 	@Override
-	public void insert(Compte o) {
+	public Compte insert(Compte o) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void update(Compte o) {
+	public Compte update(Compte o) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
@@ -42,6 +42,8 @@ public class DAOCompte implements IDAOCompte {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 

@@ -20,15 +20,15 @@ public class DAOPatient implements IDAOPatient{
 	}
 
 	@Override
-	public void insert(Patient o) {
+	public Patient insert(Patient o) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void update(Patient o) {
+	public Patient update(Patient o) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
@@ -36,5 +36,6 @@ public class DAOPatient implements IDAOPatient{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

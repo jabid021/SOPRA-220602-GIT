@@ -1,5 +1,10 @@
 package model.table;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="plane")
 public class Avion extends Vehicule {
 
 	private String carburant;

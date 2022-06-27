@@ -4,16 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
- @Table(name="car")
-public class Voiture extends Vehicule{
+ @Table(name="boat")
+public class Bateau extends Vehicule{
 	
 	private String marque;
 
 	
-	public Voiture() {
+	public Bateau() {
 		super();
 	}
-	public Voiture(int roues, String marque) {
+	public Bateau(int roues, String marque) {
 		super(roues);
 		this.marque = marque;
 	}

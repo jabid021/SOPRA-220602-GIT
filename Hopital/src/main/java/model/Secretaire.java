@@ -1,7 +1,14 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Secretaire extends Compte {
 
+	public Secretaire() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Secretaire(String login) {
 		super(login);
 	}

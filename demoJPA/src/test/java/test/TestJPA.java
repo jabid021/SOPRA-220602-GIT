@@ -1,17 +1,21 @@
 package test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import model.joined.Animal;
 import model.joined.Chien;
 import model.joined.Lion;
 import model.single.Admin;
+import model.single.Compte;
 import model.single.ConfigPc;
 import model.single.User;
 import model.table.Avion;
+import model.table.Vehicule;
 import model.table.Voiture;
 
 public class TestJPA {
@@ -50,11 +54,30 @@ public class TestJPA {
 		em.persist(adm);
 		em.persist(lion);
 		em.persist(chien);
+		em.persist(avion);
+		em.persist(voiture);
 		
 		em.getTransaction().commit();
 		
 		
 		em.close();
+		
+		
+		
+		
+		em = emf.createEntityManager();
+		
+		
+		//List<Compte> comptes= em.createQuery("from User").getResultList();
+		//List<Animal> zoo=em.createQuery("from Animal").getResultList();
+		List<Vehicule> garage=em.createQuery("from Voiture").getResultList();;
+		
+		
+		System.out.println(garage);
+		
+		
+		em.close();
+		
 		
 		emf.close();
 		

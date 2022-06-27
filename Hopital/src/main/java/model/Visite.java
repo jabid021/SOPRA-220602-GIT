@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 //Obligatoire / permet de creer une table dans la bdd
 @Entity
@@ -17,8 +18,12 @@ public class Visite {
 	//Semi-Obligatoire / precise qu'on veut un auto-increment pour cette PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private transient Medecin medecin;
-	private transient Patient patient;
+	
+	@ManyToOne
+	private Medecin medecin;
+	
+	@ManyToOne
+	private  Patient patient;
 	private LocalDate dateVisite;
 	private double prix=20;
 	private int salle;

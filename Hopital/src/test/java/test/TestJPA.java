@@ -14,7 +14,10 @@ public class TestJPA {
 	public static void main(String[] args) {
 		
 		
-		
+		//1-1 => OneToOne
+		//1-* => OneToMany
+		//*-  1 => ManyToOne
+		// * - * => ManyToMany
 		
 		Patient p = new Patient(7777,"Abid","Jordan",Civilite.Homme);
 		
@@ -41,6 +44,9 @@ public class TestJPA {
 		//persist => insert en bdd
 			em.persist(p);
 			em.persist(p2);
+			
+			em.persist(m);
+			
 			
 			em.persist(v);
 		

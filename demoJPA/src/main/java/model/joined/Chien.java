@@ -1,5 +1,6 @@
 package model.joined;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 @Table(name="dog")
 public class Chien extends Animal {
 
+	@Column(nullable=false)
 	private String race;
 
 	public Chien() {

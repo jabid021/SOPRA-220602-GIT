@@ -20,15 +20,15 @@ public class DAOVisite implements IDAOVisite {
 	}
 
 	@Override
-	public void insert(Visite o) {
+	public Visite insert(Visite o) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void update(Visite o) {
+	public Visite update(Visite o) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
@@ -42,5 +42,7 @@ public class DAOVisite implements IDAOVisite {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
