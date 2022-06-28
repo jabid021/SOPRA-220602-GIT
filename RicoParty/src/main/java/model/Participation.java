@@ -1,25 +1,38 @@
 package model;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints =  @UniqueConstraint(columnNames = { "id_participant", "id_event" }))
 public class Participation {
 	@Id
-	@Column (length = 11)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column (name= "nb_personne", length =11)
+	
+	@Column (name= "nb_personne" , columnDefinition = "int default 1")
 	private int nbPersonne;
+	
 	@Column (name= "accompagnants", length =75)
 	private String invites;
+	
 	@ManyToOne
 	@JoinColumn (name= "id_participant")
 	private User user;
-	private transient List <Contribution> contributions;
+	
+	@OneToMany(mappedBy = "participation")
+	private  List <Contribution> contributions;
+	
 	@ManyToOne
 	@JoinColumn (name= "id_event")
 	private Event event;

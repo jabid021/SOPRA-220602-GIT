@@ -7,16 +7,16 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Adresse {
 	
-	@Column(name="numero",length = 10)
+	@Column(length = 10)
 	private String numero;
 	
-	@Column(name="voie",length = 25)
+	@Column(length = 25)
 	private String voie;
 	
-	@Column(name="ville",length = 30)
+	@Column(length = 30)
 	private String ville;
 	
-	@Column(name="cp",length = 9)
+	@Column(length = 9)
 	private String cp;
 	
 	

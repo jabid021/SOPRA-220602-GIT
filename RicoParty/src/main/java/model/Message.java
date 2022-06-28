@@ -18,7 +18,6 @@ public class Message {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id",length=11)
 	private Integer id;
 	
 	@Column(name="contenu",length=150)
