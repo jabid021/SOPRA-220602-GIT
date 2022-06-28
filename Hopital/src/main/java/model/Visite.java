@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 //Obligatoire / permet de creer une table dans la bdd
@@ -19,14 +20,21 @@ public class Visite {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
-	private Medecin medecin;
-	
-	@ManyToOne
-	private  Patient patient;
+
 	private LocalDate dateVisite;
 	private double prix=20;
 	private int salle;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="medecin")
+	private Medecin medecin;
+	
+	@ManyToOne
+	@JoinColumn(name="patient")
+	private  Patient patient;
+	
+	
 	
 	
 	//Obligatoire 
