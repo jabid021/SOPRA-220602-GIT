@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+//A FAIRE//
 
 public class Event {
 
@@ -18,7 +19,7 @@ public class Event {
 	private String password;
 	private User createur;
 	private List <Message> messages=new ArrayList();
-	private List <Contribution> demandes;
+	private transient List <Contribution> demandes;
 	private List <Participation> participants=new ArrayList();;
 	private Adresse adresse;
 	

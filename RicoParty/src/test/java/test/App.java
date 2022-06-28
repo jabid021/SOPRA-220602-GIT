@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+
 import dao.DAOCompte;
 import dao.DAOEvent;
 import dao.DAOMessage;
@@ -15,17 +17,17 @@ import model.Event;
 import model.Message;
 import model.Participation;
 import model.User;
+import util.Context;
 
 public class App {
 
 	static Compte connected;
 	
 	
-	static DAOCompte daoC = new DAOCompte();
-	static DAOMessage daoM = new DAOMessage();
-	static DAOParticipation daoP = new DAOParticipation();
-	static DAOEvent daoE = new DAOEvent();
-
+	static DAOCompte daoC = Context.getInstance().getDaoCompte();
+	static DAOMessage daoM = Context.getInstance().getDaoMessage();
+	static DAOParticipation daoP=  Context.getInstance().getDaoParticipation();
+	static DAOEvent daoE = Context.getInstance().getDaoEvent();
 
 
 	public static String saisieString(String msg) 
@@ -279,8 +281,13 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-
-		menuPrincipal();
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		
+		em.close();
+		
+		Context.getInstance().getEmf().close();
+		
+		//menuPrincipal();
 
 	}
 

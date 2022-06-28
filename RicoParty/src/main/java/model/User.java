@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//A FAIRE//
 public class User extends Compte {
 	
 	private List <Message> messages=new ArrayList();
@@ -46,7 +46,7 @@ public class User extends Compte {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password
-				+ ", messages=" + messages + ", participations=" + participations + ", events=" + events + "]";
+				+ "]";
 	}
 
 	

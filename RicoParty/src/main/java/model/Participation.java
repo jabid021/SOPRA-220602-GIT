@@ -1,14 +1,14 @@
 package model;
 
 import java.util.List;
-
+//A FAIRE//
 public class Participation {
 	
 	private Integer id;
 	private int nbPersonne;
 	private String invites;
 	private User user;
-	private List <Contribution> contributions;
+	private transient List <Contribution> contributions;
 	private Event event;
 	
 	
@@ -93,7 +93,7 @@ public class Participation {
 	@Override
 	public String toString() {
 		return "Participation [id=" + id + ", nbPersonne=" + nbPersonne + ", invites=" + invites + ", user=" + user
-				+ ", contributions=" + contributions + ", event=" + event + "]";
+				+ "]";
 	}
 	
 

@@ -1,5 +1,5 @@
 package model;
-
+// A FAIRE//
 public abstract class Compte {
 	
 	protected Integer id;

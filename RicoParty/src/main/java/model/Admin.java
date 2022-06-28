@@ -1,5 +1,5 @@
 package model;
-
+//A FAIRE//
 public class Admin extends Compte {
 
 	public Admin(Integer id, String nom, String prenom, String mail, String password) {

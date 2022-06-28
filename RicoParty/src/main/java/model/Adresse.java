@@ -1,5 +1,5 @@
 package model;
-
+//A FAIRE//
 public class Adresse {
 	private String numero;
 	private String voie;
