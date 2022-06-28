@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Message;
 
-public class DAOMessage implements IDAO<Message,Integer> {
+public class DAOMessage implements IDAOMessage{
 
 	@Override
 	public Message findById(Integer id) {

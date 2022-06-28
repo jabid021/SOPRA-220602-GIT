@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Participation;
 
-public class DAOParticipation implements IDAO<Participation,Integer> {
+public class DAOParticipation implements IDAOParticipation {
 
 	@Override
 	public Participation findById(Integer id) {

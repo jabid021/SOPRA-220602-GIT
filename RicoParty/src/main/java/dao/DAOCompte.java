@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Compte;
 
-public class DAOCompte implements IDAO<Compte,Integer> {
+public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public Compte findById(Integer id) {
