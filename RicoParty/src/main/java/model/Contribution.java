@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,6 +16,7 @@ public class Contribution {
 	private Integer id;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Sucre', 'Sale', 'Alcool', 'Soft')")
 	private Categorie categorie;
 	
 	private String description;
