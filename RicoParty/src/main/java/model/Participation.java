@@ -1,12 +1,12 @@
 package model;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 @Entity
 public class Participation {
 	@Id
@@ -28,6 +28,10 @@ public class Participation {
 
 	
 	
+	public Participation() {
+	}
+
+
 	public Participation(Integer id, int nbPersonne, String invites, User user, List<Contribution> contributions,
 			Event event) {
 		this.id = id;

@@ -56,7 +56,7 @@ public class Event {
 	
 	private transient List <Contribution> demandes;
 	
-	@OneToMany(mappedBy = "id_event")
+	@OneToMany(mappedBy = "event")
 	private List <Participation> participants=new ArrayList();
 	
 	@Embedded

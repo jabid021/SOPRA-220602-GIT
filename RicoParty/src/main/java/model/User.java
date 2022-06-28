@@ -3,17 +3,19 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 @Entity
+@DiscriminatorValue("user")
 public class User extends Compte {
 	
 	
-	@OneToMany
+	@OneToMany (mappedBy = "user")
 	private List <Message> messages=new ArrayList();
-	@OneToMany
+	@OneToMany (mappedBy = "user")
 	private List<Participation> participations=new ArrayList();
-	@OneToMany
+	@OneToMany (mappedBy = "createur")
 	private List<Event> events=new ArrayList();
 	
 	
