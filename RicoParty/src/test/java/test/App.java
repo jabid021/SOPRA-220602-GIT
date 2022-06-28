@@ -20,7 +20,6 @@ import model.User;
 import util.Context;
 
 public class App {
-
 	static Compte connected;
 	
 	
@@ -281,11 +280,11 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		//EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		
-		em.close();
+		//em.close();
 		
-		Context.getInstance().getEmf().close();
+		//Context.getInstance().getEmf().close();
 		
 		//menuPrincipal();
 

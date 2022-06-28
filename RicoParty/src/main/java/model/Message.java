@@ -3,8 +3,13 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 //A FAIRE//
 
@@ -12,15 +17,27 @@ import javax.persistence.Id;
 public class Message {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name="contenu",length=150)
 	private String content;
+	
+	@Column(name="date_message")
 	private LocalDate date;
+	
+	@Column(name="heure_message")
 	private LocalTime heure;
+	
+	@ManyToOne
+	@JoinColumn(name="id_user")//length=11
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="id_event")//length=11
 	private Event event;
 	
 	public Message() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Message(Integer id, String content, LocalDate date, LocalTime heure, User user, Event event) {

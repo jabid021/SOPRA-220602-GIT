@@ -1,6 +1,13 @@
 package model;
-//A FAIRE//
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("admin")
 public class Admin extends Compte {
+	
+	public Admin() {}
 
 	public Admin(Integer id, String nom, String prenom, String mail, String password) {
 		super(id, nom, prenom, mail, password);
@@ -10,7 +17,7 @@ public class Admin extends Compte {
 		super(nom, prenom, mail, password);
 	}
 
-
+	
 	@Override
 	public String toString() {
 		return "Admin [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password

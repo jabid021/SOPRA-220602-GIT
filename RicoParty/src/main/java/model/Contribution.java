@@ -1,10 +1,35 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Contribution {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Sucre', 'Sale', 'Alcool', 'Soft')")
 	private Categorie categorie;
+	
 	private String description;
 	
+	@ManyToOne
+	private Event event;
+	
+	@ManyToOne
+	private Participation participation;
+	
+	
+	public Contribution() {
+	}
 	
 	public Contribution(Integer id, Categorie categorie, String description) {
 		this.id = id;
@@ -41,6 +66,21 @@ public class Contribution {
 		this.description = description;
 	}
 
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public Participation getParticipation() {
+		return participation;
+	}
+
+	public void setParticipation(Participation participation) {
+		this.participation = participation;
+	}
 
 	@Override
 	public String toString() {

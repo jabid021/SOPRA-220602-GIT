@@ -2,14 +2,31 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-//A FAIRE//
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+@Entity
+@DiscriminatorValue("user")
 public class User extends Compte {
 	
+	
+	@OneToMany (mappedBy = "user")
 	private List <Message> messages=new ArrayList();
+	@OneToMany (mappedBy = "user")
 	private List<Participation> participations=new ArrayList();
+	@OneToMany (mappedBy = "createur")
 	private List<Event> events=new ArrayList();
 	
 	
+	
+	
+
+
+	public User() {
+		super();
+	}
+
 	public User(Integer id, String nom, String prenom, String mail, String password, List<Event> events) {
 		super(id, nom, prenom, mail, password);
 		this.events = events;
