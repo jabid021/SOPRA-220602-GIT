@@ -1,14 +1,38 @@
 package model;
-// A FAIRE//
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Compte {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column( length = 11)
 	protected Integer id;
+	@Column( length = 15)
 	protected String nom;
+	@Column( length = 15)
 	protected String prenom;
+	@Column(unique=true, length = 30)
 	protected String mail;
+	@Column( length = 125)
 	protected String password;
 	
 	
+	
+	
+	
+	public Compte() {
+		super();
+	}
+
 	public Compte(Integer id, String nom, String prenom, String mail, String password) {
 		this.id = id;
 		this.nom = nom;

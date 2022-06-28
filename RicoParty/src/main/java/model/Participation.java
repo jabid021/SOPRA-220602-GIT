@@ -1,14 +1,27 @@
 package model;
 
 import java.util.List;
-//A FAIRE//
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+@Entity
 public class Participation {
-	
+	@Id
+	@Column (length = 11)
 	private Integer id;
+	@Column (name= "nb_personne", length =11)
 	private int nbPersonne;
+	@Column (name= "accompagnants", length =75)
 	private String invites;
+	@ManyToOne
+	@JoinColumn (name= "id_participant")
 	private User user;
 	private transient List <Contribution> contributions;
+	@ManyToOne
+	@JoinColumn (name= "id_event")
 	private Event event;
 	
 	
