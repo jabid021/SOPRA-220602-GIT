@@ -6,23 +6,68 @@ import java.util.ArrayList;
 import java.util.List;
 //A FAIRE//
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Event {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id",length=11)
 	private Integer id;
+	
+	@Column(name="date_event")
 	private LocalDate date;
+	
+	@Column(name="heure_event")
 	private LocalTime heure;
+	
+	@Column(name="titre",length = 30)
 	private String titre;
+	
+	@Column(name="description",nullable=true)
 	private String description;
+	
+	@Column(name="taille_max",length=11)
 	private int tailleMax;
+	
+	@Column(name="accompagnant_max",length=11)
 	private int accompagnantMax;
+	
 	private double prix;
+	
+	@Column(name="password",length = 5)
 	private String password;
+	
+	@ManyToOne
+	@JoinColumn(name="id_createur")//length=11
 	private User createur;
-	private List <Message> messages=new ArrayList();
+	
+	@OneToMany(mappedBy = "event")
+	private List <Message> messages;
+	
 	private transient List <Contribution> demandes;
-	private List <Participation> participants=new ArrayList();;
+	
+	@OneToMany(mappedBy = "id_event")
+	private List <Participation> participants=new ArrayList();
+	
+	@Embedded
 	private Adresse adresse;
 	
+	
+	
+	public Event() {
+	}
+
+
 	public Event (Integer id, LocalDate date,LocalTime heure,String titre,String description,int tailleMax,int accompagnantMax,double prix,String password,User createur,List<Message> messages,List<Contribution> demandes,List<Participation> participants,Adresse adresse){
 		this.id=id;
 		this.date=date;
