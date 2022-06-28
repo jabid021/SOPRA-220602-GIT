@@ -62,7 +62,7 @@ public class DAOEvent implements IDAO<Event,Integer> {
 	}
 
 	@Override
-	public void insert(Event e) {
+	public Event insert(Event e) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -92,11 +92,13 @@ public class DAOEvent implements IDAO<Event,Integer> {
 		catch (Exception ee) {
 			ee.printStackTrace();
 		}
+		return e;
 
 	}
 
 	@Override
-	public void save(Event o) {
+	public Event save(Event o) {
+		return o;
 		// TODO Auto-generated method stub
 		
 	}

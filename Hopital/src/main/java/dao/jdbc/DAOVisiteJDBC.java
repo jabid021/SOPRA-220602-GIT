@@ -110,7 +110,7 @@ public class DAOVisiteJDBC implements IDAOVisite {
 			while(rs.next()) 
 			{
 				Patient p = new Patient(idPatient, rs.getString("nom"), rs.getString("prenom"));
-				Medecin m = new Medecin(rs.getString("login"));
+				Medecin m = new Medecin(rs.getString("login"),rs.getString("password"));
 				Visite v = new Visite(rs.getInt("visite.numero"),m,p,rs.getString("date_visite"),rs.getDouble("prix"),rs.getInt("salle"));
 				visites.add(v);
 			}

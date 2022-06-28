@@ -56,11 +56,11 @@ public class DAOCompteJDBC implements IDAOCompte {
 			{
 					if(rs.getString("type_compte").equals("Medecin")) 
 					{
-						connected=new Medecin(rs.getInt("id"),login);
+						connected=new Medecin(rs.getInt("id"),login,password);
 					}
 					else if(rs.getString("type_compte").equals("Secretaire"))
 					{
-						connected=new Secretaire(login);
+						connected=new Secretaire(rs.getInt("id"),login,password);
 					} 
 			}
 			

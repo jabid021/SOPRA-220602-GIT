@@ -2,23 +2,27 @@ package util;
 
 import java.util.LinkedList;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import dao.IDAOCompte;
 import dao.IDAOPatient;
 import dao.IDAOVisite;
-import dao.jdbc.DAOCompteJDBC;
-import dao.jdbc.DAOPatientJDBC;
-import dao.jdbc.DAOVisiteJDBC;
+import dao.jpa.DAOCompte;
+import dao.jpa.DAOPatient;
+import dao.jpa.DAOVisite;
 import model.Compte;
 import model.Patient;
 
 public class Context {
 	
 	private LinkedList<Patient> fileAttente = new LinkedList();
-	private IDAOCompte daoC = new DAOCompteJDBC();
-	private IDAOPatient daoP = new DAOPatientJDBC();
-	private IDAOVisite daoV = new DAOVisiteJDBC();
+	private IDAOCompte daoC = new DAOCompte();
+	private IDAOPatient daoP = new DAOPatient();
+	private IDAOVisite daoV = new DAOVisite();
 	private Compte connected;
 	private boolean enPause = false;
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("demoJPA");
 	
 	
 	private static Context _instance;
@@ -102,6 +106,16 @@ public class Context {
 
 	public void setEnPause(boolean enPause) {
 		this.enPause = enPause;
+	}
+
+
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+
+
+	public void setEmf(EntityManagerFactory emf) {
+		this.emf = emf;
 	}
 
 

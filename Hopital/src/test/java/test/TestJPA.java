@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
 import model.Civilite;
 import model.Medecin;
 import model.Patient;
+import model.Secretaire;
 import model.Visite;
 
 public class TestJPA {
@@ -24,10 +25,15 @@ public class TestJPA {
 		Patient p2 = new Patient(7778,"Abid","Jeremy",Civilite.NB);
 		
 		
-		Medecin m = new Medecin("med1");
+		Medecin m = new Medecin("med1","med1");
+		
 		m.setSalle(1);
 		Visite v = new Visite(m,p);
 		
+		
+		Medecin m2 = new Medecin("med2","med2");
+		
+		Secretaire s = new Secretaire("sec","sec");
 		
 		
 		
@@ -46,7 +52,8 @@ public class TestJPA {
 			em.persist(p2);
 			
 			em.persist(m);
-			
+			em.persist(m2);
+			em.persist(s);
 			
 			em.persist(v);
 		

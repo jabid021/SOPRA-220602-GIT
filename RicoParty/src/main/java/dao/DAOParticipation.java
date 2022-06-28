@@ -85,7 +85,7 @@ public class DAOParticipation implements IDAO<Participation,Integer> {
 	}
 
 	@Override
-	public void insert(Participation p) {
+	public Participation insert(Participation p) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -104,12 +104,13 @@ public class DAOParticipation implements IDAO<Participation,Integer> {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
+		return p;	
 
 	}
 
 	@Override
-	public void save(Participation p) {
+	public Participation save(Participation p) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -129,7 +130,8 @@ public class DAOParticipation implements IDAO<Participation,Integer> {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
+		return p;	
 	}
 
 	@Override
@@ -191,5 +193,6 @@ public class DAOParticipation implements IDAO<Participation,Integer> {
 		}
 		return participations;
 	}
+	
 
 }

@@ -61,7 +61,7 @@ public class Test {
 		switch(choix)
 		{
 		case 1 : seConnecter();break;
-		case 2 : System.exit(0);
+		case 2 : Context.getInstance().getEmf().close();  System.exit(0);
 		}
 		menuPrincipal();
 	}

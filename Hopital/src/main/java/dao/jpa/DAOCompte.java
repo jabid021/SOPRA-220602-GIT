@@ -2,49 +2,88 @@ package dao.jpa;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import dao.IDAOCompte;
 import model.Compte;
+import util.Context;
 
-public class DAOCompte implements IDAOCompte {
+public class DAOCompte implements IDAOCompte{
 
 	@Override
 	public Compte findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Compte p = em.find(Compte.class, 7777);
+
+		em.close();
+		return p;
 	}
 
 	@Override
 	public List<Compte> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		List<Compte> comptes = em.createQuery("from Compte").getResultList();
+
+		em.close();
+		return comptes;
 	}
 
 	@Override
-	public Compte insert(Compte o) {
-		// TODO Auto-generated method stub
-		return null;
+	public Compte insert(Compte c) {
+		return update(c);
 	}
 
 	@Override
-	public Compte update(Compte o) {
-		// TODO Auto-generated method stub
-		return null;
+	public Compte update(Compte c) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		em.getTransaction().begin();
+
+		c=em.merge(c);
+
+		em.getTransaction().commit();
+
+		em.close();
+		return c;
 	}
 
 	@Override
-	public void delete(Compte o) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Compte c) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		em.getTransaction().begin();
+
+		c=em.merge(c);
+
+		em.remove(c);
+
+		em.getTransaction().commit();
+
+		em.close();
+
 	}
 
 	@Override
 	public Compte connect(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Query requete = em.createQuery("SELECT c from Compte c where c.login=:log and c.password=:pass");
+		requete.setParameter("log", login);
+		requete.setParameter("pass", password);
+		Compte connected=null;
+		try {
+		connected = (Compte) requete.getSingleResult();
+		}
+		catch(Exception e) {e.printStackTrace();}
+		//connected=(Compte) em.createQuery("SELECT c from Compte c where c.login=:log and c.password=:pass").setParameter("log", login).setParameter("pass", password).getSingleResult();
+		
+		em.close();
+		return connected;
 	}
-
-
-
 
 
 }

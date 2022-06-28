@@ -52,7 +52,7 @@ public class DAOMessage implements IDAO<Message,Integer> {
 	}
 
 	@Override
-	public void insert(Message m) {
+	public Message insert(Message m) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -75,11 +75,13 @@ public class DAOMessage implements IDAO<Message,Integer> {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return m;
 
 	}
 
 	@Override
-	public void save(Message o) {
+	public Message save(Message o) {
+		return o;
 		// TODO Auto-generated method stub
 		
 	}

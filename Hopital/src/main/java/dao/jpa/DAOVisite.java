@@ -2,47 +2,81 @@ package dao.jpa;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import dao.IDAOVisite;
 import model.Visite;
+import util.Context;
 
-public class DAOVisite implements IDAOVisite {
+public class DAOVisite implements IDAOVisite{
 
 	@Override
 	public Visite findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Visite p = em.find(Visite.class, 7777);
+
+		em.close();
+		return p;
 	}
 
 	@Override
 	public List<Visite> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		List<Visite> visites = em.createQuery("from Visite").getResultList();
+
+		em.close();
+		return visites;
 	}
 
 	@Override
-	public Visite insert(Visite o) {
-		// TODO Auto-generated method stub
-		return null;
+	public Visite insert(Visite p) {
+		return update(p);
 	}
 
 	@Override
-	public Visite update(Visite o) {
-		// TODO Auto-generated method stub
-		return null;
+	public Visite update(Visite v) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		em.getTransaction().begin();
+
+		v=em.merge(v);
+
+		em.getTransaction().commit();
+
+		em.close();
+		return v;
 	}
 
 	@Override
-	public void delete(Visite o) {
-		// TODO Auto-generated method stub
+	public void delete(Visite v) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		em.getTransaction().begin();
+
+		v=em.merge(v);
 		
+		em.remove(v);
+
+		em.getTransaction().commit();
+
+		em.close();
+
 	}
 
 	@Override
 	public List<Visite> findAllByIdPatient(int idPatient) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		List<Visite> visites = em.createQuery("Select v from Visite v where v.patient.id=:idP").setParameter("idP",idPatient).getResultList();
+
+		em.close();
+		return visites;
 	}
 
-	
 
 }

@@ -28,8 +28,12 @@ public class Secretaire extends Compte {
 	public Secretaire() {
 	}
 	
-	public Secretaire(String login) {
-		super(login);
+	public Secretaire(Integer id,String login,String password) {
+		super(id,login,password);
+	}
+	
+	public Secretaire(String login,String password) {
+		super(login,password);
 	}
 
 	

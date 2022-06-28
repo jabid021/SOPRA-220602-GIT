@@ -1,12 +1,17 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +27,13 @@ public class Produit {
 	private double prix;
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="vendeur")
 	private Fournisseur vendeur;
 	
 	
+	@OneToMany(mappedBy = "produit")
+	private List<Achat> ventes;
 	
 	public Produit() {
 	}
@@ -73,6 +81,29 @@ public class Produit {
 	public void setVendeur(Fournisseur vendeur) {
 		this.vendeur = vendeur;
 	}
+
+
+
+
+	public List<Achat> getVentes() {
+		return ventes;
+	}
+
+
+
+
+	public void setVentes(List<Achat> ventes) {
+		this.ventes = ventes;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Produit [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", vendeur=" + vendeur + "]";
+	}
+	
 	
 	
 	

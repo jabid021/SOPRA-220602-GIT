@@ -2,39 +2,71 @@ package dao.jpa;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import dao.IDAOPatient;
 import model.Patient;
+import util.Context;
 
 public class DAOPatient implements IDAOPatient{
 
 	@Override
 	public Patient findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Patient p = em.find(Patient.class, 7777);
+
+		em.close();
+		return p;
 	}
 
 	@Override
 	public List<Patient> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		List<Patient> patients = em.createQuery("from Patient").getResultList();
+
+		em.close();
+		return patients;
 	}
 
 	@Override
-	public Patient insert(Patient o) {
-		// TODO Auto-generated method stub
-		return null;
+	public Patient insert(Patient p) {
+		return update(p);
 	}
 
 	@Override
-	public Patient update(Patient o) {
-		// TODO Auto-generated method stub
-		return null;
+	public Patient update(Patient p) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		em.getTransaction().begin();
+
+		p=em.merge(p);
+
+		em.getTransaction().commit();
+
+		em.close();
+		return p;
 	}
 
 	@Override
-	public void delete(Patient o) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Patient p) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		em.getTransaction().begin();
+
+		p=em.merge(p);
+		//p=em.find(Patient.class, p.getId());
+
+		em.remove(p);
+
+		em.getTransaction().commit();
+
+		em.close();
+
 	}
 
 

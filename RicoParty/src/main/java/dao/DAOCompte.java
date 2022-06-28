@@ -95,7 +95,7 @@ public class DAOCompte implements IDAO<Compte,Integer> {
 	}
 
 	@Override
-	public void insert(Compte c) {
+	public Compte insert(Compte c) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -124,11 +124,13 @@ public class DAOCompte implements IDAO<Compte,Integer> {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
+		return c;	
 	}
 
 	@Override
-	public void save(Compte o) {
+	public Compte save(Compte o) {
+		return o;
 		// TODO Auto-generated method stub
 		
 	}
