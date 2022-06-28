@@ -21,7 +21,6 @@ public class Event {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id",length=11)
 	private Integer id;
 	
 	@Column(name="date_event")
@@ -30,31 +29,33 @@ public class Event {
 	@Column(name="heure_event")
 	private LocalTime heure;
 	
-	@Column(name="titre",length = 30)
+	@Column(length = 50)
 	private String titre;
 	
-	@Column(name="description",nullable=true)
+	@Column(columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(name="taille_max",length=11)
+	@Column(name="taille_max")
 	private int tailleMax;
 	
-	@Column(name="accompagnant_max",length=11)
+	@Column(name="accompagnant_max",columnDefinition = "int default 0")
 	private int accompagnantMax;
 	
+	@Column(columnDefinition = "double default 0")
 	private double prix;
 	
-	@Column(name="password",length = 5)
+	@Column(length = 5)
 	private String password;
 	
 	@ManyToOne
-	@JoinColumn(name="id_createur")//length=11
+	@JoinColumn(name="id_createur")
 	private User createur;
 	
 	@OneToMany(mappedBy = "event")
 	private List <Message> messages;
 	
-	private transient List <Contribution> demandes;
+	@OneToMany(mappedBy = "event")
+	private List <Contribution> demandes;
 	
 	@OneToMany(mappedBy = "event")
 	private List <Participation> participants=new ArrayList();

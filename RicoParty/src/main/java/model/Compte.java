@@ -12,19 +12,22 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type_compte",columnDefinition = ("ENUM('user','admin')"))
+@DiscriminatorColumn(name = "type_compte",columnDefinition = ("ENUM('user','admin') default 'user'"))
 public abstract class Compte {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column( length = 11)
 	protected Integer id;
+	
 	@Column( length = 15)
 	protected String nom;
+	
 	@Column( length = 15)
 	protected String prenom;
+	
 	@Column(unique=true, length = 30)
 	protected String mail;
+	
 	@Column( length = 125)
 	protected String password;
 	
