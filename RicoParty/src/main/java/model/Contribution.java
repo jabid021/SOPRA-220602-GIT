@@ -1,10 +1,14 @@
 package model;
 
+
 public class Contribution {
 	private Integer id;
 	private Categorie categorie;
 	private String description;
 	
+	
+	private Event event;
+	private Participation participation;
 	
 	public Contribution(Integer id, Categorie categorie, String description) {
 		this.id = id;
@@ -41,6 +45,22 @@ public class Contribution {
 		this.description = description;
 	}
 
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public Participation getParticipation() {
+		return participation;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public void setParticipation(Participation participation) {
+		this.participation = participation;
+	}
 
 	@Override
 	public String toString() {

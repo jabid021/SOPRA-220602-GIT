@@ -1,9 +1,17 @@
 package model;
-//A FAIRE//
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Adresse {
+	@Column(length = 10)
 	private String numero;
+	@Column(length = 25)
 	private String voie;
+	@Column(length = 30)
 	private String ville;
+	@Column(length = 9)
 	private String cp;
 	
 	
@@ -13,6 +21,8 @@ public class Adresse {
 		this.ville = ville;
 		this.cp = cp;
 	}
+	
+	public Adresse() {}
 
 
 	public String getNumero() {
