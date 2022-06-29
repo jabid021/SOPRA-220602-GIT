@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id_event","id_participant"}))
 public class Participation {
@@ -33,6 +34,9 @@ public class Participation {
 	
 	@OneToMany(mappedBy = "participation")
 	private List <Contribution> contributions;
+	
+	@Version
+	private int version;
 	
 	
 	public Participation(Integer id, int nbPersonne, String invites, User user, List<Contribution> contributions,
@@ -113,6 +117,15 @@ public class Participation {
 		this.event = event;
 	}
 
+	
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	@Override
 	public String toString() {

@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 @Entity
 public class Event {
@@ -40,7 +42,8 @@ public class Event {
 	@ManyToOne
 	@JoinColumn(name="id_createur",nullable = false)
 	private User createur;
-	@OneToMany(mappedBy = "event")
+	@OneToMany(mappedBy = "event" )
+	
 	private List <Message> messages=new ArrayList();
 	@OneToMany(mappedBy = "event")
 	private List <Participation> participants=new ArrayList();
@@ -50,6 +53,12 @@ public class Event {
 	
 	@OneToMany(mappedBy = "event")
 	private List <Contribution> demandes;
+	
+	
+	@Version
+	private int version;
+	
+	
 	
 	public Event (Integer id, LocalDate date,LocalTime heure,String titre,String description,int tailleMax,int accompagnantMax,double prix,String password,User createur,List<Message> messages,List<Contribution> demandes,List<Participation> participants,Adresse adresse){
 		this.id=id;
@@ -204,6 +213,17 @@ public class Event {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+
+	
+	public int getVersion() {
+		return version;
+	}
+
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 
 	@Override
 	public String toString() {

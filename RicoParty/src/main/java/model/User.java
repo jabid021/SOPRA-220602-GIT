@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 @Entity
 public class User extends Compte {
 	
@@ -15,6 +16,8 @@ public class User extends Compte {
 	private List<Participation> participations=new ArrayList();
 	@OneToMany(mappedBy = "createur")
 	private List<Event> events=new ArrayList();
+	@Version
+	private int version;
 	
 	
 
@@ -53,6 +56,15 @@ public class User extends Compte {
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

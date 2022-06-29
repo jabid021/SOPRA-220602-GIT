@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 @Entity
 public class Contribution {
@@ -27,6 +28,10 @@ public class Contribution {
 	private Event event;
 	@ManyToOne
 	private Participation participation;
+	
+	
+	@Version
+	private int version;
 	
 	public Contribution() {}
 	
@@ -79,6 +84,15 @@ public class Contribution {
 
 	public void setParticipation(Participation participation) {
 		this.participation = participation;
+	}
+
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

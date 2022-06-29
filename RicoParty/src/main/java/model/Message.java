@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 
 @Entity
@@ -30,6 +31,10 @@ public class Message {
 	@ManyToOne
 	@JoinColumn(name="id_event",nullable = false)
 	private Event event;
+	
+	
+	@Version
+	private int version;
 	
 	public Message() {
 	}
@@ -102,6 +107,14 @@ public class Message {
 	}
 
 	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	@Override
 	public String toString() {
 		return "Message [id=" + id + ", content=" + content + ", date=" + date + ", heure=" + heure + ", user=" + user

@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.Event;
 import util.Context;
@@ -46,6 +47,25 @@ public class DAOEvent implements IDAO<Event,Integer> {
 		em.close();
 	}
 
+	
+	public List<Event> findAllWithMessagesAndDemandesAndParticipants()
+	{
+		EntityManager em  = Context.getInstance().getEmf().createEntityManager();
+
+
+		Query q = em.createQuery("SELECT distinct e from Event e left join fetch e.messages ");
+		List<Event> events = q.getResultList();
+		
+		q = em.createQuery("SELECT distinct e from Event e left join fetch e.demandes");
+		events = q.getResultList();
+		
+		q = em.createQuery("SELECT distinct e from Event e left join fetch e.participants");
+		events = q.getResultList();
+
+		em.close();
+
+		return events;
+	}
 
 
 }

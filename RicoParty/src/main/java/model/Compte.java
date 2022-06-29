@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -29,6 +30,8 @@ public abstract class Compte {
 	protected String password;
 	
 	
+	@Version
+	private int version;
 	
 	
 	
@@ -100,6 +103,14 @@ public abstract class Compte {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	
