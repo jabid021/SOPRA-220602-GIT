@@ -27,10 +27,6 @@ public class DAOMessage implements IDAOMessage{
 		return messages;
 	}
 
-	@Override
-	public Message insert(Message m) {
-		return m;
-	}
 
 	@Override
 	public Message save(Message m) {
@@ -53,6 +49,7 @@ public class DAOMessage implements IDAOMessage{
 	
 	}
 
+	
 	public List<Message> findAllByIdEvent(int idEvent) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		List<Message> messages = em.createQuery("Select m from Message m where m.event.id=:idE").setParameter("idE",idEvent).getResultList();

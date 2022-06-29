@@ -27,11 +27,6 @@ public class DAOCompte implements IDAOCompte {
 		return comptes;
 	}
 
-	@Override
-	public Compte insert(Compte c) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Compte save(Compte c) {
@@ -53,7 +48,8 @@ public class DAOCompte implements IDAOCompte {
 		em.close();
 		
 	}
-
+	
+	
 	public Compte seConnecter(String mail, String password) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		Query requete = em.createQuery("SELECT c from Compte c where c.mail=:mail and c.password=:pass");

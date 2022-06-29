@@ -26,11 +26,6 @@ public class DAOEvent implements IDAO<Event,Integer> {
 		return events;
 	}
 
-	@Override
-	public Event insert(Event e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Event save(Event e) {

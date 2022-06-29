@@ -27,11 +27,6 @@ public class DAOContribution  implements IDAOContribution{
 	
 	}
 
-	@Override
-	public Contribution insert(Contribution c) {
-		
-		return c;
-	}
 
 	@Override
 	public Contribution save(Contribution c) {
