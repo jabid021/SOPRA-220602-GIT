@@ -66,7 +66,7 @@ public class DAOParticipation implements IDAO<Participation,Integer> {
 
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 
-		List<Participation> participations = em.createQuery("Select p from Participation p where p.participation.id=:idE").setParameter("idE",idEvent).getResultList();
+		List<Participation> participations = em.createQuery("Select p from Participation p where p.event.id=:idE").setParameter("idE",idEvent).getResultList();
 
 		em.close();
 		return participations;

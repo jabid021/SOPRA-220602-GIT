@@ -288,6 +288,7 @@ public class App {
 		
 		menuPrincipal();*/
 
+		System.out.println(daoM.findAllByIdEvent(2));
 		Context.getInstance().getEmf().close();
 	}
 

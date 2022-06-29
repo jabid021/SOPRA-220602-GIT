@@ -43,14 +43,13 @@ public class Event {
 	private User createur;
 	@OneToMany(mappedBy = "event")
 	private List <Message> messages=new ArrayList();
-	
 	@OneToMany(mappedBy = "event")
 	private List <Participation> participants=new ArrayList();
 	@Embedded
 	private Adresse adresse;
 	
 	
-	
+	@OneToMany(mappedBy = "event")
 	private List <Contribution> demandes;
 	
 	public Event (Integer id, LocalDate date,LocalTime heure,String titre,String description,int tailleMax,int accompagnantMax,double prix,String password,User createur,List<Message> messages,List<Contribution> demandes,List<Participation> participants,Adresse adresse){

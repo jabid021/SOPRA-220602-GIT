@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import model.Event;
 import model.Message;
+import model.Participation;
 import util.Context;
 
 public class DAOMessage implements IDAO<Message,Integer> {
@@ -34,10 +35,7 @@ public class DAOMessage implements IDAO<Message,Integer> {
 	
 
 
-	public List<Message> findAllByIdEvent(int idEvent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public Message save(Message m) {
@@ -69,7 +67,15 @@ public class DAOMessage implements IDAO<Message,Integer> {
 
 	}
 	
+	public List<Message> findAllByIdEvent(int idEvent) {
 
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		List<Message> messages = em.createQuery("Select m from Message m where m.event.id=:idE").setParameter("idE",idEvent).getResultList();
+
+		em.close();
+		return messages;
+	}
 	
 
 }
