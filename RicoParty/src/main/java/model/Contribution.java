@@ -22,6 +22,7 @@ public class Contribution {
 	private String description;
 	
 	@ManyToOne
+	@Column(nullable=false)
 	private Event event;
 	@ManyToOne
 	private Participation participation;
