@@ -20,15 +20,15 @@ public class Message {
 	private Integer id;
 	@Column(name="contenu",length = 150,nullable=false)
 	private String content;
-	@Column(name="date_message")
+	@Column(name="date_message",nullable = false)
 	private LocalDate date;
-	@Column(name="heure_message")
+	@Column(name="heure_message",nullable = false)
 	private LocalTime heure;
 	@ManyToOne
-	@JoinColumn(name="id_user")
+	@JoinColumn(name="id_user",nullable = false)
 	private User user;
 	@ManyToOne
-	@JoinColumn(name="id_event")
+	@JoinColumn(name="id_event",nullable = false)
 	private Event event;
 	
 	public Message() {

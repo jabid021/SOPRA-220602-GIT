@@ -18,7 +18,7 @@ public class Contribution {
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Sucre', 'Sale', 'Alcool', 'Soft')")
 	private Categorie categorie;
-	@Column(length=100)
+	@Column(length=100,nullable = false)
 	private String description;
 	
 	@ManyToOne

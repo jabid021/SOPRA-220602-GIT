@@ -5,13 +5,13 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Adresse {
-	@Column(length = 10)
+	@Column(length = 10,nullable = false)
 	private String numero;
-	@Column(length = 25)
+	@Column(length = 25,nullable = false)
 	private String voie;
-	@Column(length = 30)
+	@Column(length = 30,nullable = false)
 	private String ville;
-	@Column(length = 9)
+	@Column(length = 9,nullable = false)
 	private String cp;
 	
 	

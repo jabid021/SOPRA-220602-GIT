@@ -22,9 +22,9 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="date_event")
+	@Column(name="date_event",nullable = false)
 	private LocalDate date;
-	@Column(name="heure_event")
+	@Column(name="heure_event",nullable = false)
 	private LocalTime heure;
 	@Column(length=50,nullable = false)
 	private String titre;
@@ -39,7 +39,7 @@ public class Event {
 	@Column(length=5,nullable = false)
 	private String password;
 	@ManyToOne
-	@JoinColumn(name="id_createur")
+	@JoinColumn(name="id_createur",nullable = false)
 	private User createur;
 	@OneToMany(mappedBy = "event")
 	private List <Message> messages=new ArrayList();

@@ -24,11 +24,11 @@ public class Participation {
 	@Column(name="accompagnants",columnDefinition = "VARCHAR(75)",nullable = false)
 	private String invites;
 	@ManyToOne
-	@JoinColumn(name="id_participant")
+	@JoinColumn(name="id_participant",nullable = false)
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name="id_event")
+	@JoinColumn(name="id_event",nullable = false)
 	private Event event;
 	
 	@OneToMany(mappedBy = "participation")
