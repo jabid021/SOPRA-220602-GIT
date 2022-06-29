@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-import javax.persistence.EntityManager;
-
 import dao.DAOCompte;
 import dao.DAOEvent;
 import dao.DAOMessage;
@@ -101,7 +99,7 @@ public class App {
 
 		String password = saisieString("Saisir votre password : ");
 
-		connected = daoC.connect(mail,password);
+		connected = daoC.seConnecter(mail,password);
 
 
 		if(connected==null) 

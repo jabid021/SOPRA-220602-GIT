@@ -67,10 +67,6 @@ public class Contribution {
 		return event;
 	}
 
-	public Event getEvent() {
-		return event;
-	}
-
 	public Participation getParticipation() {
 		return participation;
 	}

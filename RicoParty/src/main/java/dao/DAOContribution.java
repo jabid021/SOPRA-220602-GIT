@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import model.Contribution;
-import model.Message;
 import util.Context;
 
 public class DAOContribution  implements IDAOContribution{

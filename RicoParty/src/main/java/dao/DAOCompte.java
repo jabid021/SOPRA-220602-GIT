@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import model.Compte;
-import model.Message;
 import util.Context;
 
 public class DAOCompte implements IDAOCompte {

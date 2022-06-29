@@ -2,8 +2,6 @@ package dao;
 
 import java.util.List;
 
-import model.Compte;
-
 public interface IDAO<T,K> {
 	
 	

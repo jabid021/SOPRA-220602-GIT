@@ -51,13 +51,6 @@ public class DAOMessage implements IDAOMessage{
 
 	
 	public List<Message> findAllByIdEvent(int idEvent) {
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		List<Message> messages = em.createQuery("Select m from Message m where m.event.id=:idE").setParameter("idE",idEvent).getResultList();
-		em.close();
-		return messages;
-	}
-	
-	public List<Message> findAllByIdEvent(int idEvent) {
 
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 

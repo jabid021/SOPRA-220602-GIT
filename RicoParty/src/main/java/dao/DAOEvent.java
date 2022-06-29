@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import model.Event;
-import model.Message;
 import util.Context;
 
 public class DAOEvent implements IDAO<Event,Integer> {

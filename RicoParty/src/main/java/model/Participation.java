@@ -15,9 +15,6 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id_event","id_participant"}))
 public class Participation {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
