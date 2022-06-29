@@ -32,12 +32,6 @@ public class DAOParticipation implements IDAOParticipation {
 	}
 
 	@Override
-	public Participation insert(Participation p) {
-		// TODO Auto-generated method stub
-		return save(p);
-	}
-
-	@Override
 	public Participation save(Participation p) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 

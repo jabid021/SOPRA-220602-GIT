@@ -92,7 +92,7 @@ public class App {
 
 		User inscrit = new User(nom, prenom, mail,password);
 
-		daoC.insert(inscrit);
+		daoC.save(inscrit);
 
 	}
 
@@ -197,7 +197,7 @@ public class App {
 		Event e = new Event(idEvent, null, null, null, null, 0, 0, 0, null, null, null, null, null, null);
 		String message = saisieString("Saisir votre message");
 		Message m = new Message(message, LocalDate.now(), LocalTime.now(), (User) connected, e);
-		daoM.insert(m);
+		daoM.save(m);
 		System.out.println("\nMessage Envoyé !\n");
 
 
@@ -214,7 +214,7 @@ public class App {
 
 		Participation p= new Participation (nbPersonne,invites,(User)connected,null,e1);
 
-		daoP.insert(p);
+		daoP.save(p);
 
 	}
 
@@ -236,7 +236,7 @@ public class App {
 		Event e1 = new Event(LocalDate.parse(date),LocalTime.parse(heure), titre, description,50 ,accompagnantMax, prix, password,(User) connected,null,a1);
 
 
-		daoE.insert(e1);
+		daoE.save(e1);
 
 	}
 
@@ -287,6 +287,8 @@ public class App {
 		//Context.getInstance().getEmf().close();
 		
 		//menuPrincipal();
+		
+		System.out.println(daoM.findAllByIdEvent(1));
 
 	}
 

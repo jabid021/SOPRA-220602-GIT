@@ -4,50 +4,49 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import model.Event;
+import model.Contribution;
 import model.Message;
 import util.Context;
 
-public class DAOEvent implements IDAO<Event,Integer> {
+public class DAOContribution  implements IDAOContribution{
 
 	@Override
-	public Event findById(Integer id) {
+	public Contribution findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Event e = em.find(Event.class, id);
+		Contribution c = em.find(Contribution.class, id);
 		em.close();
-		return e;
+		return c;
 	}
 
 	@Override
-	public List<Event> findAll() {
+	public List<Contribution> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		List<Event> events = em.createQuery("from Event").getResultList();
+		List<Contribution> contributions = em.createQuery("from Contribution").getResultList();
 		em.close();
-		return events;
+		return contributions;
+	
 	}
 
 
 	@Override
-	public Event save(Event e) {
+	public Contribution save(Contribution c) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		e=em.merge(e);
+		c=em.merge(c);
 		em.getTransaction().commit();
 		em.close();
-		return e;
+		return c;
 	}
 
 	@Override
 	public void delete(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Event e = em.find(Event.class, id);
+		Contribution c = em.find(Contribution.class, id);
 		em.getTransaction().begin();		
-		em.remove(e);
+		em.remove(c);
 		em.getTransaction().commit();
 		em.close();
+		
 	}
-
-
-	
 
 }
