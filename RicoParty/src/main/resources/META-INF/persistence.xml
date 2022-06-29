@@ -6,8 +6,8 @@
 
 	<persistence-unit name="eric-party"
 		transaction-type="RESOURCE_LOCAL">
-		<!-- implementation de JPA -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- implementation de JPA -->
 
 		<properties>
 			<property name="hibernate.connection.driver"

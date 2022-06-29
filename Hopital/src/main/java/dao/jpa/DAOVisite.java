@@ -17,8 +17,6 @@ public class DAOVisite implements IDAOVisite{
 
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 
-		Visite p = em.find(Visite.class, 7777);
-
 		em.close();
 		return p;
 	}

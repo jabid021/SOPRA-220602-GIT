@@ -48,6 +48,5 @@ public class DAOEvent implements IDAO<Event,Integer> {
 	}
 
 
-	
 
 }

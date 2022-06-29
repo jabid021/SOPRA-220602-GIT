@@ -11,6 +11,8 @@ import util.Context;
 
 public class DAOCompte implements IDAOCompte {
 
+
+	
 	@Override
 	public Compte findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -47,6 +49,12 @@ public class DAOCompte implements IDAOCompte {
 		em.getTransaction().commit();
 		em.close();
 		
+		em.remove(c);
+
+		em.getTransaction().commit();
+
+		em.close();
+
 	}
 	
 	
@@ -63,5 +71,6 @@ public class DAOCompte implements IDAOCompte {
 		em.close();
 		return connected;
 	}
+
 
 }

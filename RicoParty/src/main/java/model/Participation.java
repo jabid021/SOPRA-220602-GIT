@@ -12,39 +12,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 @Entity
-@Table(uniqueConstraints =  @UniqueConstraint(columnNames = { "id_participant", "id_event" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id_event","id_participant"}))
 public class Participation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column (name= "nb_personne" , columnDefinition = "int default 1")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name="nb_personne",columnDefinition = "int default 1")
 	private int nbPersonne;
-	
-	@Column (name= "accompagnants", length =75)
+	@Column(name="accompagnants",columnDefinition = "VARCHAR(75)",nullable = false)
 	private String invites;
-	
 	@ManyToOne
-	@JoinColumn (name= "id_participant")
+	@JoinColumn(name="id_participant",nullable = false)
 	private User user;
 	
-	@OneToMany(mappedBy = "participation")
-	private  List <Contribution> contributions;
-	
 	@ManyToOne
-	@JoinColumn (name= "id_event")
+	@JoinColumn(name="id_event",nullable = false)
 	private Event event;
 	
+	@OneToMany(mappedBy = "participation")
+	private List <Contribution> contributions;
 	
-
 	
-	
-	public Participation() {
-	}
-
-
 	public Participation(Integer id, int nbPersonne, String invites, User user, List<Contribution> contributions,
 			Event event) {
 		this.id = id;
@@ -55,6 +48,10 @@ public class Participation {
 		this.event = event;
 	}
 
+	public Participation() {
+		
+		
+	}
 	
 	public Participation(int nbPersonne, String invites, User user, List<Contribution> contributions,Event event) {
 		this.nbPersonne = nbPersonne;

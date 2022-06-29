@@ -84,7 +84,7 @@ public class App {
 
 	public static void inscription() {
 
-		String prenom =saisieString("Saisir votre prénom :" );
+		String prenom =saisieString("Saisir votre prï¿½nom :" );
 		String nom =saisieString("Saisir votre nom :" );
 		String mail = saisieString("Saisir votre mail : ");
 		String password = saisieString("Saisir votre password : ");
@@ -101,7 +101,7 @@ public class App {
 
 		String password = saisieString("Saisir votre password : ");
 
-		connected = daoC.seConnecter(mail,password);
+		connected = daoC.connect(mail,password);
 
 
 		if(connected==null) 
@@ -149,8 +149,8 @@ public class App {
 		
 		System.out.println("Event numero "+idEvent+" : ");
 		
-		System.out.println("1 - Participer à l'event "+idEvent);
-		System.out.println("2 - Envoyer un message à l'event");
+		System.out.println("1 - Participer ï¿½ l'event "+idEvent);
+		System.out.println("2 - Envoyer un message ï¿½ l'event");
 		System.out.println("3 - Afficher tous les messages");
 		System.out.println("4 - Afficher tous les participants de l'event");
 		System.out.println("5 - Retour");
@@ -198,7 +198,7 @@ public class App {
 		String message = saisieString("Saisir votre message");
 		Message m = new Message(message, LocalDate.now(), LocalTime.now(), (User) connected, e);
 		daoM.save(m);
-		System.out.println("\nMessage Envoyé !\n");
+		System.out.println("\nMessage Envoyï¿½ !\n");
 
 
 	}
@@ -224,7 +224,7 @@ public class App {
 		String titre= saisieString("Entrez le titre de l'event");
 		String description= saisieString("Entrez la description de l'event");
 		int accompagnantMax= saisieInt("Entrez le nombre max d'accompagnants");
-		double prix= saisieDouble("Entrez le prix d'entrée");
+		double prix= saisieDouble("Entrez le prix d'entrï¿½e");
 		String numero= saisieString("Entrez l'adresse (numero) de l'event");
 		String voie= saisieString("Entrez l'adresse (voie) de l'event");
 		String ville= saisieString("Entrez l'adresse (ville) de l'event");
@@ -274,22 +274,21 @@ public class App {
 		}
 		if(daoE.findAll().isEmpty())
 		{
-			System.out.println("aucun event à afficher");
+			System.out.println("aucun event a afficher");
 		}
 
 	}
 
 	public static void main(String[] args) {
-		//EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		/*EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		
 		//em.close();
 		
-		//Context.getInstance().getEmf().close();
 		
-		//menuPrincipal();
-		
-		System.out.println(daoM.findAllByIdEvent(1));
+		menuPrincipal();*/
 
+		System.out.println(daoM.findAllByIdEvent(2));
+		Context.getInstance().getEmf().close();
 	}
 
 }

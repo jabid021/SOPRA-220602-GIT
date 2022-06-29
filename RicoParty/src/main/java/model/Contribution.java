@@ -11,25 +11,22 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Contribution {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Sucre', 'Sale', 'Alcool', 'Soft')")
 	private Categorie categorie;
-	
+	@Column(length=100,nullable = false)
 	private String description;
 	
 	@ManyToOne
 	private Event event;
-	
 	@ManyToOne
 	private Participation participation;
 	
-	
-	public Contribution() {
-	}
+	public Contribution() {}
 	
 	public Contribution(Integer id, Categorie categorie, String description) {
 		this.id = id;
@@ -70,12 +67,16 @@ public class Contribution {
 		return event;
 	}
 
-	public void setEvent(Event event) {
-		this.event = event;
+	public Event getEvent() {
+		return event;
 	}
 
 	public Participation getParticipation() {
 		return participation;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 	public void setParticipation(Participation participation) {
