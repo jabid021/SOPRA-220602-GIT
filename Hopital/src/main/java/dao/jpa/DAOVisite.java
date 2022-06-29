@@ -16,9 +16,9 @@ public class DAOVisite implements IDAOVisite{
 	public Visite findById(Integer id) {
 
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-
+		Visite v = em.find(Visite.class, id);
 		em.close();
-		return p;
+		return v;
 	}
 
 	@Override
@@ -44,6 +44,7 @@ public class DAOVisite implements IDAOVisite{
 
 		v=em.merge(v);
 
+		
 		em.getTransaction().commit();
 
 		em.close();

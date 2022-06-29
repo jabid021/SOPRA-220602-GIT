@@ -47,5 +47,8 @@ public class DAOContribution  implements IDAOContribution{
 		em.close();
 		
 	}
+	
+	
+	
 
 }

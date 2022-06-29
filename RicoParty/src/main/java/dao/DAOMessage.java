@@ -30,8 +30,12 @@ public class DAOMessage implements IDAOMessage{
 
 	@Override
 	public Message save(Message m) {
+		
+		
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
+		
+		
 		m=em.merge(m);
 		em.getTransaction().commit();
 		em.close();
@@ -49,6 +53,17 @@ public class DAOMessage implements IDAOMessage{
 	
 	}
 
+
+	public void delete(Message m ) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		
+		em.getTransaction().begin();	
+		m = em.merge(m);	
+		em.remove(m);
+		em.getTransaction().commit();
+		em.close();
+	
+	}
 	
 	public List<Message> findAllByIdEvent(int idEvent) {
 

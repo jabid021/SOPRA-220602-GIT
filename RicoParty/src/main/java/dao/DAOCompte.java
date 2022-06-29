@@ -61,7 +61,7 @@ public class DAOCompte implements IDAOCompte {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		Query requete = em.createQuery("SELECT c from Compte c where c.mail=:mail and c.password=:pass");
 		requete.setParameter("mail", mail);
-		requete.setParameter("pass", password);
+		requete.setParameter("pass", password);  
 		Compte connected=null;
 		try {
 		connected = (Compte) requete.getSingleResult();

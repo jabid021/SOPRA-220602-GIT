@@ -1,14 +1,13 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import model.Contribution;
 import model.Event;
 import model.Message;
-import model.Participation;
 import util.Context;
 
 public class TestLazy {
@@ -175,25 +174,44 @@ public class TestLazy {
 	public static void demoVersion() 
 	{
 	
-	
-		Message m = Context.getInstance().getDaoMessage().findById(1);
+		EntityManager em =Context.getInstance().getEmf().createEntityManager();
+		
+		Message m = em.find(Message.class, 1);
 		
 		System.out.println(m);
-		m.setContent("Nouveau content");
-		int saisieBidon = App.saisieInt("Attente bdd");
+		m.setContent("Nouveau content2222222");
 		
-		Context.getInstance().getDaoMessage().save(m);
+		em.refresh(m);
+		
+		System.out.println(m);
+		
+		
+		em.close();
+		//Context.getInstance().getDaoMessage().save(m);
 
+		
+		
+
+		
 	
-
 
 	}
 
 
 	public static void main(String[] args) {
 
-		
 		demoVersion();
+		/*EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		
+		Query myQuery = em.createNativeQuery(
+				"SELECT * FROM message WHERE contenu not like '%g%'", Message.class);
+		List<Message> msg = myQuery.getResultList();
+		
+		System.out.println(msg);
+		
+		em.close();*/
+		
+	
 
 		/*List<Event> events= showLeftJoinFetchNoDoublonsMessagesPlusContributionsWorking();
 
