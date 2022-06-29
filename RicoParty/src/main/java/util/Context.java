@@ -102,7 +102,10 @@ public class Context {
 
 
 	
-	
+	public void closeEmf() 
+	{
+		this.emf.close();
+	}
 	
 	
 	
