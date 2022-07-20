@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<!-- Configuration de l'unité de persistance -->
+	<persistence-unit name="EshopUnit" transaction-type="RESOURCE_LOCAL">
+		<!-- Fournisseur HIBERNATE -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<!-- Liste des classes d'entité -->
+		<class>formation.eshop.model.Fournisseur</class>
+		<class>formation.eshop.model.Client</class>
+		<class>formation.eshop.model.Adresse</class>
+		<class>formation.eshop.model.Commande</class>
+		<class>formation.eshop.model.Achat</class>
+		<class>formation.eshop.model.Produit</class>
+
+		<!-- Propriétés Hibernate -->
+		<properties>
+			<property name="hibernate.connection.driver" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/eshop?serverTimezone=UTC" />
+			<property name="hibernate.connection.user" value="root" />
+			<property name="hibernate.connection.password" value="admin" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- On imprime les requêtes SQL générées par Hibernate dans la console -->
+			<property name="hibernate.show_sql" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>
