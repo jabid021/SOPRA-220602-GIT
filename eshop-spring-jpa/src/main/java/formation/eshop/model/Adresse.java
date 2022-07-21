@@ -24,6 +24,17 @@ public class Adresse {
 	@Column(name = "ADR_CP", length = 10)
 	private String codePostal;
 
+	public Adresse() {
+		super();
+	}
+
+	public Adresse(String rue, String codePostal, String ville) {
+		super();
+		this.rue = rue;
+		this.ville = ville;
+		this.codePostal = codePostal;
+	}
+
 	public Long getId() {
 		return id;
 	}
