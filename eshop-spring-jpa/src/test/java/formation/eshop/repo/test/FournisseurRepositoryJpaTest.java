@@ -9,15 +9,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import formation.eshop.model.Fournisseur;
 import formation.eshop.repo.IFournisseurRepository;
 import formation.eshop.repo.jpa.FournisseurRepositoryJpa;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FournisseurRepositoryJpaTest {
 	private IFournisseurRepository repoFournisseur = new FournisseurRepositoryJpa();
 	
