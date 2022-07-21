@@ -36,7 +36,11 @@ public class FournisseurRepositoryJpa implements IFournisseurRepository {
 
 		fournisseur = em.find(Fournisseur.class, id);
 
-		return Optional.of(fournisseur);
+		if (fournisseur != null) {
+			return Optional.of(fournisseur);
+		}
+
+		return Optional.empty();
 	}
 
 	public Fournisseur save(Fournisseur obj) {

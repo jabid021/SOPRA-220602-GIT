@@ -145,4 +145,66 @@ public class ProduitRepositoryTest extends TestCase {
 		assertEquals("REF X", iphoneFind.getReference());
 		assertEquals(amazon.getId(), iphoneFind.getFournisseur().getId());
 	}
+	
+	public void testDelete() {
+		IProduitRepository produitRepo = context.getBean(IProduitRepository.class);
+
+		// ARRANGE
+		Produit iphone = new Produit("IPhone");
+
+		iphone.setStock(10);
+		iphone.setPrixAchat(550d);
+		iphone.setPrixVente(950d);
+		iphone.setReference("REF");
+
+		iphone = produitRepo.save(iphone);
+
+		// ACT
+		produitRepo.deleteById(iphone.getId());
+		
+		// ASSERT	
+		Optional<Produit> optIphoneFind = produitRepo.findById(iphone.getId());
+		
+		assertEquals(false, optIphoneFind.isPresent());	
+	}
+	
+	public void testfindBetween() {
+		IProduitRepository produitRepo = context.getBean(IProduitRepository.class);
+
+		// ARRANGE		
+		int startSize = produitRepo.findByPrixBetween(900d, 1300d).size();
+		
+		Produit iphone = new Produit("IPhone");
+
+		iphone.setStock(10);
+		iphone.setPrixAchat(550d);
+		iphone.setPrixVente(950d);
+		iphone.setReference("REF");
+
+		iphone = produitRepo.save(iphone);
+		
+		Produit galaxyS22 = new Produit("Galaxy S22");
+
+		galaxyS22.setStock(100);
+		galaxyS22.setPrixAchat(450d);
+		galaxyS22.setPrixVente(750d);
+		galaxyS22.setReference("REF S22");
+
+		galaxyS22 = produitRepo.save(galaxyS22);
+		
+		Produit ipadAir = new Produit("Ipad Air 5");
+
+		ipadAir.setStock(3);
+		ipadAir.setPrixAchat(850d);
+		ipadAir.setPrixVente(1250d);
+		ipadAir.setReference("AIR 5 WIFI");
+
+		ipadAir = produitRepo.save(ipadAir);
+
+		// ACT
+		int endSize = produitRepo.findByPrixBetween(900d, 1300d).size();
+
+		// ASSERT
+		assertEquals(2, endSize - startSize);
+	}
 }

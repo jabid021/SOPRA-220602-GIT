@@ -36,7 +36,11 @@ public class ProduitRepositoryJpa implements IProduitRepository {
 
 		produit = em.find(Produit.class, id);
 
-		return Optional.of(produit);
+		if (produit != null) {
+			return Optional.of(produit);
+		}
+		
+		return Optional.empty();
 	}
 
 	@Override
