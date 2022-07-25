@@ -30,6 +30,15 @@
 						<label for="societe">Société:</label> <input type="text" 
 							class="form-control" name="societe" value="${fournisseur.societe}">
 					</div>
+					<div class="form-group">
+						<label for="idAdresse">Adresse:</label>
+						<select class="form-control" name="idAdresse">
+							<option value="">Veuillez sélectionner une adresse</option>
+							<c:forEach items="${adresses}" var="adr">
+								<option value="${adr.id}" ${adr.id == fournisseur.adresse.id ? 'selected' : ''}>${adr.id} - ${adr.rue} ${adr.codePostal} ${adr.ville}</option>
+							</c:forEach>
+						</select> 
+					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end" >
 					<div class="btn-group btn-group-lg ">

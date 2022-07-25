@@ -22,6 +22,7 @@
 						<th>Nom</th>
 						<th>Prénom</th>
 						<th>Société</th>
+						<th>Adresse</th>
 						<th></th>
 					</tr>
 					</thead>
@@ -36,6 +37,7 @@
 								<td>${four.nom}</td>
 								<td>${four.prenom}</td>
 								<td>${four.societe}</td>
+								<td>(${four.adresse.id}) ${four.adresse.rue} ${four.adresse.codePostal} ${four.adresse.ville}</td>
 								<td>
 									<div class='btn-group btn-group-sm'>
 										<a href="${editUrl}" class='btn btn-primary'>
