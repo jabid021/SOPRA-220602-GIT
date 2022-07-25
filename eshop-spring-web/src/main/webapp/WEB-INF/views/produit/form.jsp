@@ -38,6 +38,16 @@
 						<label for="stock">Stock:</label> <input type="number"
 							class="form-control" name="stock" value="${monProduit.stock}">
 					</div>
+					
+					<div class="form-group">
+						<label for="idFournisseur">Fournisseur:</label>
+						<select class="form-control" name="idFournisseur">
+							<option value="">Veuillez sélectionner un fournisseur</option>
+							<c:forEach items="${fournisseurs}" var="four">
+								<option value="${four.id}" ${four.id == monProduit.fournisseur.id ? 'selected' : ''}>${four.id} - ${four.nom}</option>
+							</c:forEach>
+						</select> 
+					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end" >
 					<div class="btn-group btn-group-lg ">

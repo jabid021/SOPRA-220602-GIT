@@ -6,42 +6,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Liste des produits</title>
+<title>Liste des fournisseurs</title>
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-icons.css"/>">
 </head>
 <body>
 	<div class="container">
 		<div class="card mt-3">
-			<div class="card-header bg-info text-white"><span class="h2">Liste des produits</span></div>
+			<div class="card-header bg-info text-white"><span class="h2">Liste des fournisseurs</span></div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
 						<tr>
 						<th>Identifiant</th>
-						<th>Libellé</th>
-						<th>Prix d'achat</th>
-						<th>Prix de vente</th>
-						<th>Référence</th>
-						<th>Stock</th>
-						<th>Fournisseur</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Société</th>
 						<th></th>
 					</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${mesProduits}" var="produit">
-							<c:url value="/produit/edit" var="editUrl">
-								<c:param name="id" value="${produit.id}"/>
+						<c:forEach items="${fournisseurs}" var="four">
+							<c:url value="/fournisseur/edit" var="editUrl">
+								<c:param name="id" value="${four.id}"/>
 							</c:url>
-							<c:url value="/produit/delete/${produit.id}" var="removeUrl"/>
+							<c:url value="/fournisseur/delete/${four.id}" var="removeUrl"/>
 							<tr>
-								<td>${produit.id}</td>
-								<td>${produit.libelle}</td>
-								<td>${produit.prixAchat}</td>
-								<td>${produit.prixVente}</td>
-								<td>${produit.reference}</td>
-								<td>${produit.stock}</td>
-								<td>${produit.fournisseur.id} - ${produit.fournisseur.nom}</td>
+								<td>${four.id}</td>
+								<td>${four.nom}</td>
+								<td>${four.prenom}</td>
+								<td>${four.societe}</td>
 								<td>
 									<div class='btn-group btn-group-sm'>
 										<a href="${editUrl}" class='btn btn-primary'>
@@ -59,7 +53,7 @@
 				</table>
 			</div>
 			<div class="card-footer">
-				<c:url value="/produit/add" var="addUrl"/>
+				<c:url value="/fournisseur/add" var="addUrl"/>
 				<a href="${addUrl}" class="btn btn-success btn-lg">
 					<i class="bi bi-plus-square"></i>
 				</a>

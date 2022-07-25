@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import formation.eshop.model.Fournisseur;
 import formation.eshop.model.Produit;
+import formation.eshop.repo.IFournisseurRepository;
 import formation.eshop.repo.IProduitRepository;
 
 @Controller
@@ -20,6 +22,8 @@ import formation.eshop.repo.IProduitRepository;
 public class ProduitController {
 	@Autowired
 	private IProduitRepository produitRepo;
+	@Autowired
+	private IFournisseurRepository fournisseurRepo;
 
 	// ETAPE 1 : réception de la requête
 	@GetMapping({ "", "/list" })
@@ -35,7 +39,9 @@ public class ProduitController {
 	}
 
 	@GetMapping("/add")
-	public String add() {
+	public String add(Model model) {
+		model.addAttribute("fournisseurs", fournisseurRepo.findAll());
+		
 		return "produit/form";
 	}
 
@@ -44,6 +50,7 @@ public class ProduitController {
 		Optional<Produit> optProduit = produitRepo.findById(id);
 
 		model.addAttribute("monProduit", optProduit.get());
+		model.addAttribute("fournisseurs", fournisseurRepo.findAll());
 
 		return "produit/form";
 	}
@@ -51,7 +58,7 @@ public class ProduitController {
 	@PostMapping("/save")
 	public String save(@RequestParam(required = false) Long id, @RequestParam String libelle,
 			@RequestParam(required = false) Double prixAchat, @RequestParam(required = false) Double prixVente,
-			@RequestParam String reference, @RequestParam(required = false, defaultValue = "0") int stock) {
+			@RequestParam String reference, @RequestParam(required = false, defaultValue = "0") int stock, @RequestParam(required = false) Long idFournisseur) {
 
 		Produit produit = null;
 
@@ -69,6 +76,15 @@ public class ProduitController {
 		produit.setPrixVente(prixVente);
 		produit.setReference(reference);
 		produit.setStock(stock);
+		
+		if(idFournisseur != null) {
+//			Optional<Fournisseur> optFournisseur = fournisseurRepo.findById(idFournisseur);
+//			produit.setFournisseur(optFournisseur.get());
+			Fournisseur fournisseur = new Fournisseur();
+			fournisseur.setId(idFournisseur);
+			
+			produit.setFournisseur(fournisseur);
+		}
 
 		produit = produitRepo.save(produit);
 
