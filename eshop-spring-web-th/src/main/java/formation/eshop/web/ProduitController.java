@@ -3,10 +3,14 @@ package formation.eshop.web;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +20,7 @@ import formation.eshop.model.Fournisseur;
 import formation.eshop.model.Produit;
 import formation.eshop.repo.IFournisseurRepository;
 import formation.eshop.repo.IProduitRepository;
+import formation.eshop.web.validator.ProduitValidator;
 
 @Controller
 @RequestMapping("/produit")
@@ -61,14 +66,11 @@ public class ProduitController {
 			@RequestParam(required = false) Double prixAchat, @RequestParam(required = false) Double prixVente,
 			@RequestParam String reference, @RequestParam(required = false, defaultValue = "0") int stock, @RequestParam(required = false) Long idFournisseur) {
 
-		Produit produit = null;
-
-		if (id == null) {
-			produit = new Produit();
-		} else {
+		Produit produit = new Produit();
+		
+		if (id != null) {
 //			Optional<Produit> optProduit = produitRepo.findById(id);
 //			produit = optProduit.get();
-			produit = new Produit();
 			produit.setId(id);
 		}
 
@@ -89,6 +91,29 @@ public class ProduitController {
 
 		produit = produitRepo.save(produit);
 
+		return "redirect:list";
+	}
+	
+	@PostMapping("/saveBis")
+	public String saveBis(@ModelAttribute("monProduit") @Valid Produit produit, BindingResult result, @RequestParam(required = false) Long idFournisseur, Model model) {
+		new ProduitValidator().validate(produit, result);
+		
+		if(result.hasErrors()) {
+			model.addAttribute("fournisseurs", fournisseurRepo.findAll());
+			
+			return "produit/form";
+		}		
+		
+		if(idFournisseur != null) {
+			Fournisseur fournisseur = new Fournisseur();
+			fournisseur.setId(idFournisseur);
+			
+			produit.setFournisseur(fournisseur);
+		}
+		
+		produit = produitRepo.save(produit);
+
+		
 		return "redirect:list";
 	}
 

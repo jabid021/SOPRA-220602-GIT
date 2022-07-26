@@ -9,7 +9,7 @@
 <body>
 	<section layout:fragment="monContenu">
 		<div class="card mt-3">
-			<form th:action="@{/fournisseur/save}" method="post">
+			<form th:action="@{/fournisseur/saveBis}" method="post">
 				<div class="card-header bg-primary text-white display-6">Edition du fournisseur</div>
 				<div class="card-body">
 					<div class="form-group">
@@ -29,11 +29,16 @@
 							class="form-control" name="societe" th:value="${fournisseur.societe}">
 					</div>
 					<div class="form-group">
-						<label for="idAdresse">Adresse:</label>
-						<select class="form-control" name="idAdresse">
-							<option value="">Veuillez sélectionner une adresse</option>
-							<option th:each="adr : ${adresses}" th:value="${adr.id}" th:selected="${adr.id == fournisseur.adresse?.id}">[[${adr.id}]] - [[${adr.rue}]] [[${adr.codePostal}]] [[${adr.ville}]]</option>
-						</select> 
+						<label for="rue">Rue:</label> <input type="text"
+							class="form-control" name="rue" th:value="${fournisseur.rue}">
+					</div>
+					<div class="form-group">
+						<label for="codePostal">Code postal:</label> <input type="text"
+							class="form-control" name="codePostal" th:value="${fournisseur.codePostal}">
+					</div>
+					<div class="form-group">
+						<label for="ville">Ville:</label> <input type="text" 
+							class="form-control" name="ville" th:value="${fournisseur.ville}">
 					</div>
 				</div>
 				<div class="card-footer">

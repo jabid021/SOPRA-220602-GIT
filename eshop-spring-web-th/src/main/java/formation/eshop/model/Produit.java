@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "produit")
@@ -22,6 +23,7 @@ public class Produit {
 	private Long id;
 
 	@Column(name = "PRO_NOM", length = 150)
+	@Size(min = 3, max = 150, message = "Le libellé doit avoir entre 3 et 150 caractères")
 	private String libelle;
 
 	@Column(name = "PRO_PRIX_ACHAT", precision = 10, scale = 2)
