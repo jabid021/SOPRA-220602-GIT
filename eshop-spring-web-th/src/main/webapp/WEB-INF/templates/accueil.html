@@ -10,7 +10,7 @@
 
 	<section layout:fragment="monContenu">
 		<div class="jumbotron">
-			<h1 class="display-4">Bien le bonjour [[${prenom}]]!</h1>
+			<h1 class="display-4">Bien le bonjour <span th:if="${prenom != null}" th:text="${prenom}"></span>!</h1>
 		</div>
 	</section>
 

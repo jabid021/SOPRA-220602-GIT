@@ -36,6 +36,7 @@ public class FournisseurController {
 
 	@GetMapping("/add")
 	public String add(Model model) {
+		model.addAttribute("fournisseur", new Fournisseur());
 		model.addAttribute("adresses", adresseRepo.findAllOrphan());
 		
 		return "fournisseur/form";

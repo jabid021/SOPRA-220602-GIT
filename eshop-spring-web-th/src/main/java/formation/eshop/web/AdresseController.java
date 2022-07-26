@@ -31,7 +31,9 @@ public class AdresseController {
 	}
 
 	@GetMapping("/add")
-	public String add() {
+	public String add(Model model) {
+		model.addAttribute("adresse", new Adresse());
+		
 		return "adresse/form";
 	}
 

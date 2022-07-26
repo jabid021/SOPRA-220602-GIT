@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
 	@RequestMapping(path = "/accueil", method = RequestMethod.GET)
-	public String accueil(Model model, @RequestParam("prenom") String prenom,
+	public String accueil(Model model, @RequestParam(required = false, value = "prenom") String prenom,
 			@RequestParam(required = false, defaultValue = "0") int age) {
 
 		model.addAttribute("prenom", prenom);
