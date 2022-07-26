@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "adresse")
@@ -16,12 +19,15 @@ public class Adresse {
 	private Long id;
 
 	@Column(name = "ADR_RUE", length = 200, nullable = false)
+	@NotBlank(message = "La rue est obligatoire")
 	private String rue;
 
 	@Column(name = "ADR_VILLE", length = 150)
+	@Size(min = 2, message = "La ville doit avoir au moins 2 caractères")
 	private String ville;
 
 	@Column(name = "ADR_CP", length = 10)
+	@Pattern(regexp = "^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$", message = "Le code postal doit être composé de 5 chiffres")
 	private String codePostal;
 
 	public Adresse() {

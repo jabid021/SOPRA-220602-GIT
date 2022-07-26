@@ -19,14 +19,17 @@
 					<div class="form-group">
 						<label for="rue">Rue:</label> <input type="text"
 							class="form-control" name="rue" th:value="${adresse.rue}">
+						<span class="text-danger" th:errors="${adresse.rue}"></span>
 					</div>
 					<div class="form-group">
 						<label for="codePostal">Code postal:</label> <input type="text"
 							class="form-control" name="codePostal" th:value="${adresse.codePostal}">
+						<span class="text-danger" th:errors="${adresse.codePostal}"></span>
 					</div>
 					<div class="form-group">
 						<label for="ville">Ville:</label> <input type="text" 
 							class="form-control" name="ville" th:value="${adresse.ville}">
+						<span class="text-danger" th:errors="${adresse.ville}"></span>
 					</div>
 				</div>
 				<div class="card-footer">
