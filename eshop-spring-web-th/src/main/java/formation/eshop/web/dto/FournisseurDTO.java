@@ -1,12 +1,19 @@
 package formation.eshop.web.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class FournisseurDTO {
 	private Long id;
 	private String nom;
 	private String prenom;
 	private String societe;
+	@NotBlank(message = "La rue est obligatoire")
 	private String rue;
+	@Size(min = 2, message = "La ville doit avoir au moins 2 caractères")
 	private String ville;
+	@Pattern(regexp = "^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$", message = "Le code postal doit être composé de 5 chiffres")
 	private String codePostal;
 
 	public FournisseurDTO() {

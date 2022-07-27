@@ -3,9 +3,12 @@ package formation.eshop.web;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +21,7 @@ import formation.eshop.model.Fournisseur;
 import formation.eshop.repo.IAdresseRepository;
 import formation.eshop.repo.IFournisseurRepository;
 import formation.eshop.web.dto.FournisseurDTO;
+import formation.eshop.web.validator.FournisseurValidator;
 
 @Controller
 @RequestMapping("/fournisseur")
@@ -99,7 +103,13 @@ public class FournisseurController {
 	}
 	
 	@PostMapping("/saveBis")
-	public String saveBis(@ModelAttribute("fournisseur") FournisseurDTO fournisseurDTO) {
+	public String saveBis(@ModelAttribute("fournisseur") @Valid FournisseurDTO fournisseurDTO, BindingResult result) {
+		new FournisseurValidator().validate(fournisseurDTO, result);
+		
+		if(result.hasErrors()) {
+			return "fournisseur/form";
+		}
+		
 		Fournisseur fournisseur = new Fournisseur();
 
 		if (fournisseurDTO.getId() != null) {
