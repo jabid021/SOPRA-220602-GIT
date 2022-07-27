@@ -9,14 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @DiscriminatorValue("fournisseur")
 @NamedQuery(name = "Fournisseur.findAllBySociete", query = "select f from Fournisseur f where f.societe = :societe")
 public class Fournisseur extends Personne {
 	@Column(name = "FOU_SOCIETE", length = 200)
+	@JsonView(Views.ViewCommon.class)
 	private String societe;
 
 	@OneToMany(mappedBy = "fournisseur")
+	@JsonView(Views.ViewFournisseurDetail.class)
 	private List<Produit> produits = new ArrayList<>();
 
 	public String getSociete() {

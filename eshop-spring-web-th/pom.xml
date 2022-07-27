@@ -12,6 +12,7 @@
 		<dbcp2.version>2.9.0</dbcp2.version>
 		<hibernate.version>5.6.9.Final</hibernate.version>
 		<hibernate-validator.version>6.2.3.Final</hibernate-validator.version>
+		<jackson.version>2.13.3</jackson.version>
 		<junit.version>4.13.2</junit.version>
 		<mysql.version>8.0.26</mysql.version>
 		<spring.version>5.3.22</spring.version>
@@ -85,13 +86,20 @@
 			<version>${thymeleaf-layout.version}</version>
 		</dependency>
 
-		<!-- HIBERNATE VALIDATOR => JSR 380 Implémentation -->		
+		<!-- HIBERNATE VALIDATOR => JSR 380 Implémentation -->
 		<dependency>
-		    <groupId>org.hibernate.validator</groupId>
-		    <artifactId>hibernate-validator</artifactId>
-		    <version>${hibernate-validator.version}</version>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
 		</dependency>
-		
+
+		<!-- JACKSON => Framework de serialisation JAVA/JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 		<!-- Connecteur MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>

@@ -49,6 +49,21 @@
 	<!-- <servlet-name>web</servlet-name> -->
 	<!-- <url-pattern>/</url-pattern> -->
 	<!-- </servlet-mapping> -->
+	
+	<!-- Utilisation du fichier de configuration Spring : api-context.xml -->
+	<!-- <servlet> -->
+	<!-- <servlet-name>rest</servlet-name> -->
+	<!-- <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>contextConfigLocation</param-name> -->
+	<!-- <param-value>/WEB-INF/api-context.xml</param-value> -->
+	<!-- </init-param> -->
+	<!-- <load-on-startup>2</load-on-startup> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>rest</servlet-name> -->
+	<!-- <url-pattern>/api/*</url-pattern> -->
+	<!-- </servlet-mapping> -->
 
 	<!-- Utilisation de la classe configuration Spring : WebConfig -->
 	<servlet>
@@ -68,6 +83,24 @@
 		<servlet-name>web</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
+	<!-- Utilisation de la classe configuration Spring : ApiConfig -->
+	<servlet>
+		<servlet-name>rest</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>formation.eshop.config.ApiConfig</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>rest</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>

@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "personne")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -19,14 +21,18 @@ import javax.persistence.Table;
 public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Column(name = "NOM", length = 100)
+	@JsonView(Views.ViewCommon.class)
 	private String nom;
 	@Column(name = "PRENOM", length = 100)
+	@JsonView(Views.ViewCommon.class)
 	private String prenom;
 
 	@OneToOne
 	@JoinColumn(name = "ADRESSE_ID")
+	@JsonView(Views.ViewPersonne.class)
 	private Adresse adresse;
 
 	public Long getId() {
