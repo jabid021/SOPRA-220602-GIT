@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition d'un produit</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<form th:action="@{/produit/saveBis}" method="post">
+				<div class="card-header bg-primary text-white display-6">Edition d'un produit</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="id">Identifiant:</label> <input type="number"
+							class="form-control" name="id" readonly th:value="${monProduit.id}">
+					</div>
+					<div class="form-group">
+						<label for="libelle">Libellé:</label> <input type="text"
+							class="form-control" id="libelle" name="libelle"
+							th:value="${monProduit.libelle}" />
+						<span class="text-danger" th:errors="${monProduit.libelle}"></span>
+					</div>
+					<div class="form-group">
+						<label for="prixAchat">Prix d'achat:</label> <input type="number"
+							class="form-control" id="prixAchat" name="prixAchat" step=".01"
+							th:value="${monProduit.prixAchat}" />
+						<span class="text-danger" th:errors="${monProduit.prixAchat}"></span>
+					</div>
+					<div class="form-group">
+						<label for="prixVente">Prix de vente:</label> <input type="number"
+							class="form-control" id="prixVente" name="prixVente" step=".01"
+							th:value="${monProduit.prixVente}" />
+						<span class="text-danger" th:errors="${monProduit.prixVente}"></span>
+					</div>
+					<div class="form-group">
+						<label for="reference">Référence:</label> <input type="text"
+							class="form-control" id="reference" name="reference"
+							th:value="${monProduit.reference}" />
+						<span class="text-danger" th:errors="${monProduit.reference}"></span>
+					</div>
+					<div class="form-group">
+						<label for="stock">Stock:</label> <input type="number"
+							class="form-control" id="stock" name="stock"
+							th:value="${monProduit.stock}" />
+						<span class="text-danger" th:errors="${monProduit.stock}"></span>
+					</div>
+					<div class="form-group">
+						<label for="idFournisseur">Fournisseur:</label>
+						<select class="form-control" id="idFournisseur" name="idFournisseur">
+							<option value="">Veuillez sélectionner un fournisseur</option>
+							<option th:each="four : ${fournisseurs}" th:value="${four.id}" th:selected="${monProduit.fournisseur?.id == four.id}">[[${four.id}]] - [[${four.nom}]]</option>						
+						</select> 
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success"><i class="bi bi-check-square-fill"></i></button>
+						<a th:href="@{/produit/cancel}" class="btn btn-warning"><i class="bi bi-backspace-fill"></i></a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+
+</body>
+</html>

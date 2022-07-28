@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Liste des fournisseurs</title>
+</head>
+<body>
+
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<div class="card-header bg-primary text-white display-6">Liste
+				des fournisseurs</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Identifiant</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Société</th>
+							<th>Adresse</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="four : ${fournisseurs}">
+							<td th:text="${four.id}"></td>
+							<td>[[${four.nom}]]</td>
+							<td>[[${four.prenom}]]</td>
+							<td>[[${four.societe}]]</td>
+							<td>([[${four.adresse?.id}]]) [[${four.adresse?.rue}]] [[${four.adresse?.codePostal}]] [[${four.adresse?.ville}]]</td>
+							<td><div class="btn-group btn-group-sm">
+									<a th:href="@{/fournisseur/edit(id=${four.id})}"
+										class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+									<a th:href="@{/fournisseur/delete/{id}(id=${four.id})}"
+										class="btn btn-danger"><i class="bi bi-trash"></i></a>
+								</div></td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+			<div class="card-footer">
+				<a th:href="@{/fournisseur/add}" class="btn btn-success btn-lg"><i
+					class="bi bi-plus-square"></i></a>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

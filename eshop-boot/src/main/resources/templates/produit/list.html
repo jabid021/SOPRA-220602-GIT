@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Liste des produits</title>
+</head>
+<body>
+
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<div class="card-header bg-primary text-white display-6">Liste des produits</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Identifiant</th>
+							<th>Libellé</th>
+							<th>Prix d'achat</th>
+							<th>Prix de vente</th>
+							<th>Référence</th>
+							<th>Stock</th>
+							<th>Fournisseur</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+							<tr th:each="produit : ${mesProduits}">
+								<td th:text="${produit.id}"></td>
+								<td>[[${produit.libelle}]]</td>
+								<td>[[${produit.prixAchat}]]</td>
+								<td>[[${produit.prixVente}]]</td>
+								<td>[[${produit.reference}]]</td>
+								<td>[[${produit.stock}]]</td>
+								<td>[[${produit.fournisseur?.id}]] - [[${produit.fournisseur?.nom}]]</td>
+								<td><div class="btn-group btn-group-sm">
+										<a th:href="@{/produit/edit(id=${produit.id})}" class="btn btn-primary"><i
+											class="bi bi-pencil-square"></i></a> 
+										<a th:href="@{/produit/delete/{id}(id=${produit.id})}"
+											class="btn btn-danger"><i class="bi bi-trash"></i></a>
+									</div></td>
+							</tr>
+					</tbody>
+
+				</table>
+			</div>
+			<div class="card-footer">
+				<a th:href="@{/produit/add}" class="btn btn-success btn-lg"><i
+					class="bi bi-plus-square"></i></a>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
