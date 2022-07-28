@@ -9,26 +9,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "achat")
 public class Achat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ACH_ID")
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 
 	@Column(name = "ACH_QUANTITE", nullable = false)
+	@JsonView(Views.ViewCommon.class)
 	private int quantite;
 
 	@Column(name = "ACH_MONTANT", precision = 10, scale = 2, nullable = false)
+	@JsonView(Views.ViewCommon.class)
 	private Double prix;
 
 	@ManyToOne
 	@JoinColumn(name = "ACH_COMMANDE_ID")
+	@JsonView(Views.ViewAchat.class)
 	private Commande commande;
 
 	@ManyToOne
 	@JoinColumn(name = "ACH_PRODUIT_ID")
+	@JsonView({ Views.ViewAchat.class, Views.ViewCommandeDetail.class })
 	private Produit produit;
 
 	public Long getId() {

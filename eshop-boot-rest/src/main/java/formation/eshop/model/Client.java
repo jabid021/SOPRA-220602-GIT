@@ -8,18 +8,24 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @DiscriminatorValue("client")
 public class Client extends Personne {
+	@JsonView(Views.ViewCommon.class)
 	private int age;
 
 	@Column(name = "CLI_EMAIL", length = 255)
+	@JsonView(Views.ViewCommon.class)
 	private String email;
 
 	@Column(name = "CLI_COMMENTS", length = 4000)
+	@JsonView(Views.ViewCommon.class)
 	private String commentaires;
 
 	@OneToMany(mappedBy = "client")
+	@JsonView(Views.ViewClientDetail.class)
 	private List<Commande> commandes = new ArrayList<>();
 
 	public int getAge() {

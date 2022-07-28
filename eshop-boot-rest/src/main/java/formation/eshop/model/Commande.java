@@ -18,29 +18,37 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "commande")
 public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CMD_ID")
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 
 	@Column(name = "CMD_DATE")
 	@Temporal(TemporalType.DATE)
+	@JsonView(Views.ViewCommon.class)
 	private Date date;
 
+	@JsonView(Views.ViewCommon.class)
 	private Double prixTotal;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "CMD_ETAT")
+	@JsonView(Views.ViewCommon.class)
 	private EtatCommande etat;
 
 	@ManyToOne
 	@JoinColumn(name = "CMD_CLIENT_ID")
+	@JsonView(Views.ViewCommande.class)
 	private Client client;
 
 	@OneToMany(mappedBy = "commande")
+	@JsonView(Views.ViewCommandeDetail.class)
 	private List<Achat> achats = new ArrayList<>();
 
 	public Long getId() {
