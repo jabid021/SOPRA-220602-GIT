@@ -49,10 +49,10 @@ public class Produit {
 
 	@ManyToOne
 	@JoinColumn(name = "PRO_FOURNISSEUR_ID")
+	@JsonView(Views.ViewProduitDetail.class)
 	private Fournisseur fournisseur;
 
 	@OneToMany(mappedBy = "produit")
-	@JsonIgnore
 	private List<Achat> achats = new ArrayList<>();
 
 	public Long getId() {

@@ -12,4 +12,6 @@ public class Views {
 	public static class ViewFournisseurDetail extends ViewFournisseur {}
 	
 	public static class ViewProduit extends ViewCommon {}
+	
+	public static class ViewProduitDetail extends ViewProduit {}
 }
