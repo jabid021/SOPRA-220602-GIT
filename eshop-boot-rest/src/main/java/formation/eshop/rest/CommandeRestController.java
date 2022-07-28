@@ -21,10 +21,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import formation.eshop.model.Achat;
 import formation.eshop.model.Commande;
 import formation.eshop.model.Views;
 import formation.eshop.repo.ICommandeRepository;
 import formation.eshop.rest.dto.PanierDTO;
+import formation.eshop.rest.dto.PanierLigneDTO;
 
 @RestController
 @RequestMapping("/commande")
@@ -66,7 +68,23 @@ public class CommandeRestController {
 
 	@GetMapping("/{id}/panier")
 	public PanierDTO panierById(@PathVariable("id") Long id) {
-		return null;
+		Optional<Commande> optCommande = commandeRepo.findByIdWithAchats(id);
+
+		if (optCommande.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+
+		Commande commande = optCommande.get();
+
+		PanierDTO panierDTO = new PanierDTO(commande.getClient().getNom(), commande.getClient().getEmail(),
+				commande.getId(), commande.getDate(), commande.getPrixTotal());
+
+		for (Achat achat : commande.getAchats()) {
+			panierDTO.addLigne(new PanierLigneDTO(achat.getProduit().getLibelle(), achat.getProduit().getPrixVente(),
+					achat.getQuantite(), achat.getPrix()));
+		}
+
+		return panierDTO;
 	}
 
 	@PostMapping("")
