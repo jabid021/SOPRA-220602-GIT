@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import formation.eshop.model.Commande;
 import formation.eshop.model.Views;
 import formation.eshop.repo.ICommandeRepository;
+import formation.eshop.rest.dto.PanierDTO;
 
 @RestController
 @RequestMapping("/commande")
@@ -44,32 +45,37 @@ public class CommandeRestController {
 	public Commande findById(@PathVariable("id") Long id) {
 		Optional<Commande> optCommande = commandeRepo.findById(id);
 
-		if(optCommande.isEmpty()) {
+		if (optCommande.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		
+
 		return optCommande.get();
 	}
-	
+
 	@GetMapping("/{id}/detail")
 	@JsonView(Views.ViewCommandeDetail.class)
 	public Commande detailById(@PathVariable("id") Long id) {
 		Optional<Commande> optCommande = commandeRepo.findByIdWithAchats(id);
 
-		if(optCommande.isEmpty()) {
+		if (optCommande.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		
+
 		return optCommande.get();
+	}
+
+	@GetMapping("/{id}/panier")
+	public PanierDTO panierById(@PathVariable("id") Long id) {
+		return null;
 	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewCommande.class)
 	public Commande create(@RequestBody @Valid Commande commande, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La commande n'a pu être créée");
 		}
-		
+
 		commande = commandeRepo.save(commande);
 
 		return commande;
@@ -82,7 +88,7 @@ public class CommandeRestController {
 
 		return commande;
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable Long id) {
 		commandeRepo.deleteById(id);
