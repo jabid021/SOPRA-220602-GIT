@@ -1,0 +1,20 @@
+<input type="text" [(ngModel)]="prenom" /><button (click)="majPrenom()">MAJ</button>
+<p [style.color]="couleur">{{prenom}}</p>
+<select [(ngModel)]="couleur">
+    <option value="#000000">Noir</option>
+    <option value="#00FF4C">Vert</option>
+    <option value="#FFFF00">Jaune</option>
+    <option value="#0000FF">Bleu</option>
+    <option value="#FF0000">Rouge</option>
+</select><br/>
+<input type="color" [(ngModel)]="couleur">
+
+<hr>
+
+<fieldset>
+    <legend>Client</legend>
+    <input type="text" [(ngModel)]="client.nom" /><input type="text" [(ngModel)]="client.prenom" /><input type="number" [(ngModel)]="client.ca" />
+    <p *ngIf="client.nom != '' && client.prenom != '' && client.ca != 0" [ngClass]="{'negatif':client.ca<0}">
+        Le client {{client.prenom}} {{client.nom}} a un chiffre d'affaire de : {{client.ca}}
+    </p>
+</fieldset>
