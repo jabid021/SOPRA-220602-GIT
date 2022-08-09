@@ -1,1 +1,28 @@
-<p>clients works!</p>
+Recherche : <input type="text" [(ngModel)]="recherche" /><br/>
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Chiffre d'affaire</th>
+        <th></th>
+    </tr>
+    <thead>
+        <tbody>
+            <tr *ngFor="let cli of search()">
+                <td>{{cli.nom}}</td>
+                <td>{{cli.prenom}}</td>
+                <td>{{cli.ca}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><input type="text" [(ngModel)]="clientForm.nom" placeholder="Tapez le nom du client" /></td>
+                <td><input type="text" [(ngModel)]="clientForm.prenom" placeholder="Tapez le prénom du client" /></td>
+                <td><input type="number" [(ngModel)]="clientForm.ca" placeholder="Tapez le chiffre d'affaire du client" /></td>
+                <td>
+                    <button (click)="valid()">Valider</button>
+                </td>
+            </tr>
+        </tfoot>
+</table>

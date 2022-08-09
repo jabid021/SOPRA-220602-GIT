@@ -13,6 +13,8 @@ export class ClientsComponent implements OnInit {
 
   recherche: string;
 
+  clientForm: Client = new Client();
+
   constructor() {
     this.clients.push(new Client("LAY", "Caroline", 125000));
     this.clients.push(new Client("CERTAIN", "Cassandre", 65000));
@@ -25,7 +27,18 @@ export class ClientsComponent implements OnInit {
   }
 
   search(): Array<Client> {
-    return null;
+    if (this.recherche) {
+      return this.clients.filter(client => client.nom.indexOf(this.recherche) != -1);
+    } else {
+      return this.clients;
+    }
+
+  }
+
+  valid() {
+    this.clients.push(this.clientForm);
+
+    this.clientForm = new Client();
   }
 
 }
