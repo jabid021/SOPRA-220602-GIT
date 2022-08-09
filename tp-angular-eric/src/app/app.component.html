@@ -18,3 +18,22 @@
         Le client {{client.prenom}} {{client.nom}} a un chiffre d'affaire de : {{client.ca}}
     </p>
 </fieldset>
+
+<mon-composant [libelle]="prenom" detail="true">Le contenu du premier appel de mon-composant</mon-composant>
+
+<div mon-comp libelle="Cassandre"><b>Le contenu du deuxième appel de mon-composant</b></div>
+
+
+<hr/>
+
+<p asc-bold>le texte à mettre à gras</p>
+
+<hr/>
+
+<asc-bold-element prefix="Voici le nom" [text]="client.nom"></asc-bold-element>
+
+<hr/>
+
+<p asc-tooltip titre="mon infobulle">le texte à infobuller</p>
+
+<asc-tooltip titre="mon infobulle 2">le texte à infobuller 2</asc-tooltip>
