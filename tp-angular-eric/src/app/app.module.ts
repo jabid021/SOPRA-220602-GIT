@@ -7,6 +7,8 @@ import { AscBoldElementComponent } from './asc-bold-element/asc-bold-element.com
 import { AscBoldComponent } from './asc-bold/asc-bold.component';
 import { AscTooltipComponent } from './asc-tooltip/asc-tooltip.component';
 import { MonComposantComponent } from './mon-composant/mon-composant.component';
+import { BgBlackDirective } from './bg-black.directive';
+import { ClientsComponent } from './clients/clients.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { MonComposantComponent } from './mon-composant/mon-composant.component';
     MonComposantComponent,
     AscBoldComponent,
     AscBoldElementComponent,
-    AscTooltipComponent
+    AscTooltipComponent,
+    BgBlackDirective,
+    ClientsComponent
   ],
   imports: [
     BrowserModule,
