@@ -12,7 +12,7 @@ export class AppComponent {
   prenom: string = 'Eric';
   couleur: string = "#000000";
 
-  client: Client = new Client("SULTAN", "Eric", 154000);
+  client: Client = new Client(1, "SULTAN", "Eric", 154000);
 
   majPrenom() {
     this.prenom = this.prenom.toUpperCase();

@@ -1,15 +1,18 @@
 Recherche : <input type="text" [(ngModel)]="recherche" /><br/>
 <table>
     <tr>
+        <th>Identifiant</th>
         <th>Nom</th>
         <th>Prénom</th>
         <th>Chiffre d'affaire</th>
         <th>Commentaires</th>
         <th></th>
+        <th></th>
     </tr>
     <thead>
         <tbody>
             <tr *ngFor="let cli of search()">
+                <td>{{cli.id}}</td>
                 <td>{{cli.nom}}</td>
                 <td>{{cli.prenom | caps}}</td>
                 <td>{{cli.ca}}</td>
@@ -18,13 +21,17 @@ Recherche : <input type="text" [(ngModel)]="recherche" /><br/>
                     <button (click)="detail(cli.prenom)">Detail (via Router.Navigate(TS))</button>
                     <a [href]="'/client/'+cli.nom">Detail (via HREF => ne jamais faire)</a>
                 </td>
+                <td><button (click)="edit(cli.id)">Edition</button>
+                    <button (click)="delete(cli.id)">Suppression</button>
+                </td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
+                <td><input type="text" [(ngModel)]="clientForm.id" disabled="" /></td>
                 <td><input type="text" [(ngModel)]="clientForm.nom" placeholder="Tapez le nom du client" /></td>
                 <td><input type="text" [(ngModel)]="clientForm.prenom" placeholder="Tapez le prénom du client" /></td>
-                <td><input type="number" [(ngModel)]="clientForm.ca" placeholder="Tapez le chiffre d'affaire du client" /></td>
+                <td colspan="2"><input type="number" [(ngModel)]="clientForm.ca" placeholder="Tapez le chiffre d'affaire du client" /></td>
                 <td>
                     <button (click)="valid()">Valider</button>
                 </td>

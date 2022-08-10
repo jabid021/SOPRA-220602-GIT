@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { CapitalisationPipe } from './capitalisation.pipe';
 import { ClientCategoryPipe } from './client-category.pipe';
+import { ClientService } from './client.service';
 
 
 const routes: Routes = [
@@ -41,7 +42,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

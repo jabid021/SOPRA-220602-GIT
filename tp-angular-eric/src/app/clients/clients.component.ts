@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from '../model';
+import { ClientService } from './../client.service';
 
 
 @Component({
@@ -10,19 +11,14 @@ import { Client } from '../model';
 })
 export class ClientsComponent implements OnInit {
 
-  clients: Array<Client> = new Array<Client>();
+ 
 
   recherche: string;
 
   clientForm: Client = new Client();
 
-  constructor(private router: Router) {
-    this.clients.push(new Client("LAY", "Caroline", 125000));
-    this.clients.push(new Client("CERTAIN", "cassandre", 65000));
-    this.clients.push(new Client("ATTAOUILE", "Hamza", 0));
-    this.clients.push(new Client("SULTAN", "éric", -1000));
-    this.clients.push(new Client("BOUJDARIA", "Bilel", 5000));
-
+  constructor(private router: Router, private clientService: ClientService) {
+  
    }
 
   ngOnInit(): void {
@@ -30,23 +26,29 @@ export class ClientsComponent implements OnInit {
 
   search(): Array<Client> {
     if (this.recherche) {
-      return this.clients.filter(client => client.nom.indexOf(this.recherche) != -1);
+      return this.clientService.findAllByNom(this.recherche);
     } else {
-      return this.clients;
+      return this.clientService.findAll();
     }
 
   }
 
   valid() {
-    this.clients.push(this.clientForm);
+    this.clientService.save(this.clientForm);
 
     this.clientForm = new Client();
-
-    this.router.navigate(['/home']);
   }
 
   detail(prenom: string) {
     this.router.navigate(["/client", prenom]);
+  }
+
+  edit(id: number) {
+    // rechercher le client par son identifiant et renseigner le formulaire
+  }
+
+  delete(id: number) {
+    // supprimer le client associé à l'identifiant reçu
   }
 
 }
