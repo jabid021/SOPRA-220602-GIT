@@ -44,11 +44,11 @@ export class ClientsComponent implements OnInit {
   }
 
   edit(id: number) {
-    // rechercher le client par son identifiant et renseigner le formulaire
+    this.clientForm = {...this.clientService.findById(id)};
   }
 
   delete(id: number) {
-    // supprimer le client associé à l'identifiant reçu
+    this.clientService.delete(id);
   }
 
 }

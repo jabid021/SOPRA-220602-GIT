@@ -38,11 +38,17 @@ export class ClientService {
 
             this.clients.push(client);
         } else { // modification d'un client existant
+            let index = this.clients.findIndex(cli => cli.id == client.id);
 
+            this.clients[index] = client;
         }
     }
 
     delete(id: number) {
+        let index = this.clients.findIndex(client => client.id == id);
 
+        if(index != -1) {
+            this.clients.splice(index, 1);
+          }
     }
 }
