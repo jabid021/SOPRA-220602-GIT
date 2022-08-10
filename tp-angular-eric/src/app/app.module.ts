@@ -12,6 +12,8 @@ import { ClientsComponent } from './clients/clients.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
+import { CapitalisationPipe } from './capitalisation.pipe';
+import { ClientCategoryPipe } from './client-category.pipe';
 
 
 const routes: Routes = [
@@ -30,7 +32,9 @@ const routes: Routes = [
     BgBlackDirective,
     ClientsComponent,
     HomeComponent,
-    ClientDetailComponent
+    ClientDetailComponent,
+    CapitalisationPipe,
+    ClientCategoryPipe
   ],
   imports: [
     BrowserModule,

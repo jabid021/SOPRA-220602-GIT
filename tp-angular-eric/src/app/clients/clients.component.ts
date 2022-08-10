@@ -18,9 +18,9 @@ export class ClientsComponent implements OnInit {
 
   constructor(private router: Router) {
     this.clients.push(new Client("LAY", "Caroline", 125000));
-    this.clients.push(new Client("CERTAIN", "Cassandre", 65000));
-    this.clients.push(new Client("ATTAOUILE", "Hamza", 525000));
-    this.clients.push(new Client("SULTAN", "Eric", -1000));
+    this.clients.push(new Client("CERTAIN", "cassandre", 65000));
+    this.clients.push(new Client("ATTAOUILE", "Hamza", 0));
+    this.clients.push(new Client("SULTAN", "éric", -1000));
     this.clients.push(new Client("BOUJDARIA", "Bilel", 5000));
 
    }

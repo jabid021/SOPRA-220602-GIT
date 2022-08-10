@@ -4,14 +4,16 @@ Recherche : <input type="text" [(ngModel)]="recherche" /><br/>
         <th>Nom</th>
         <th>Prénom</th>
         <th>Chiffre d'affaire</th>
+        <th>Commentaires</th>
         <th></th>
     </tr>
     <thead>
         <tbody>
             <tr *ngFor="let cli of search()">
                 <td>{{cli.nom}}</td>
-                <td>{{cli.prenom}}</td>
+                <td>{{cli.prenom | caps}}</td>
                 <td>{{cli.ca}}</td>
+                <td [style.color]="cli.ca | clientCategory">{{cli.ca | clientCategory:"description"}}</td>
                 <td><button [routerLink]="['/client', cli.nom]">Detail (via routerlink)</button>
                     <button (click)="detail(cli.prenom)">Detail (via Router.Navigate(TS))</button>
                     <a [href]="'/client/'+cli.nom">Detail (via HREF => ne jamais faire)</a>
