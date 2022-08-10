@@ -12,7 +12,10 @@ Recherche : <input type="text" [(ngModel)]="recherche" /><br/>
                 <td>{{cli.nom}}</td>
                 <td>{{cli.prenom}}</td>
                 <td>{{cli.ca}}</td>
-                <td></td>
+                <td><button [routerLink]="['/client', cli.nom]">Detail (via routerlink)</button>
+                    <button (click)="detail(cli.prenom)">Detail (via Router.Navigate(TS))</button>
+                    <a [href]="'/client/'+cli.nom">Detail (via HREF => ne jamais faire)</a>
+                </td>
             </tr>
         </tbody>
         <tfoot>

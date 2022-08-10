@@ -16,16 +16,12 @@ export class ClientsComponent implements OnInit {
 
   clientForm: Client = new Client();
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router) {
     this.clients.push(new Client("LAY", "Caroline", 125000));
     this.clients.push(new Client("CERTAIN", "Cassandre", 65000));
     this.clients.push(new Client("ATTAOUILE", "Hamza", 525000));
     this.clients.push(new Client("SULTAN", "Eric", -1000));
     this.clients.push(new Client("BOUJDARIA", "Bilel", 5000));
-
-    this.route.params.subscribe(params => {
-      this.recherche = params['rech'];
-    });
 
    }
 
@@ -47,6 +43,10 @@ export class ClientsComponent implements OnInit {
     this.clientForm = new Client();
 
     this.router.navigate(['/home']);
+  }
+
+  detail(prenom: string) {
+    this.router.navigate(["/client", prenom]);
   }
 
 }
