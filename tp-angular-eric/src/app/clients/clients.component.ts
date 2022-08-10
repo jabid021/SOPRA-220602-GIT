@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from '../model';
 
 
@@ -15,12 +16,17 @@ export class ClientsComponent implements OnInit {
 
   clientForm: Client = new Client();
 
-  constructor() {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.clients.push(new Client("LAY", "Caroline", 125000));
     this.clients.push(new Client("CERTAIN", "Cassandre", 65000));
     this.clients.push(new Client("ATTAOUILE", "Hamza", 525000));
     this.clients.push(new Client("SULTAN", "Eric", -1000));
     this.clients.push(new Client("BOUJDARIA", "Bilel", 5000));
+
+    this.route.params.subscribe(params => {
+      this.recherche = params['rech'];
+    });
+
    }
 
   ngOnInit(): void {
@@ -39,6 +45,8 @@ export class ClientsComponent implements OnInit {
     this.clients.push(this.clientForm);
 
     this.clientForm = new Client();
+
+    this.router.navigate(['/home']);
   }
 
 }

@@ -9,6 +9,16 @@ import { AscTooltipComponent } from './asc-tooltip/asc-tooltip.component';
 import { MonComposantComponent } from './mon-composant/mon-composant.component';
 import { BgBlackDirective } from './bg-black.directive';
 import { ClientsComponent } from './clients/clients.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ClientDetailComponent } from './client-detail/client-detail.component';
+
+
+const routes: Routes = [
+  {path:"home", component:HomeComponent},
+  {path:"client", component:ClientsComponent},
+  {path:"client/:nom", component:ClientDetailComponent}
+];
 
 @NgModule({
   declarations: [
@@ -18,11 +28,14 @@ import { ClientsComponent } from './clients/clients.component';
     AscBoldElementComponent,
     AscTooltipComponent,
     BgBlackDirective,
-    ClientsComponent
+    ClientsComponent,
+    HomeComponent,
+    ClientDetailComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
