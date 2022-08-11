@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Adresse } from '../model';
-import { AdresseService } from './adresse.service';
+import { AdresseHttpService } from './adresse-http.service';
 
 @Component({
   selector: 'app-adresse',
@@ -11,7 +11,7 @@ export class AdresseComponent implements OnInit {
 
   adresse: Adresse;
 
-  constructor(private adresseService: AdresseService) { }
+  constructor(private adresseService: AdresseHttpService) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +25,11 @@ export class AdresseComponent implements OnInit {
   }
 
   edit(id: number) {
-    this.adresse =  {...this.adresseService.findById(id)};
+    this.adresseService.findById(id).subscribe(
+      resp => {
+        this.adresse = resp;
+      }
+    )
   }
 
   save() {

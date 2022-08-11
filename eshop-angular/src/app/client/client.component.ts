@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AdresseHttpService } from '../adresse/adresse-http.service';
 import { Adresse, Client } from '../model';
-import { ClientService } from './client.service';
-import { AdresseService } from './../adresse/adresse.service';
+import { ClientHttpService } from './client-http.service';
 
 @Component({
   selector: 'app-client',
@@ -11,8 +11,10 @@ import { AdresseService } from './../adresse/adresse.service';
 export class ClientComponent implements OnInit {
 
   client: Client;
+  adressesOrphan: Array<Adresse> = new Array<Adresse>();
 
-  constructor(private clientService: ClientService, private adresseService: AdresseService) { }
+  constructor(private clientService: ClientHttpService, private adresseService: AdresseHttpService) {
+  }
 
   ngOnInit(): void {
   }
@@ -22,24 +24,31 @@ export class ClientComponent implements OnInit {
   }
 
   listAdresse(): Array<Adresse> {
-    return this.adresseService.findAll();
+    return this.adressesOrphan;
   }
 
   add() {
     this.client = new Client();
     this.client.adresse = new Adresse();
+
+    this.reloadAdresseOrphans();
   }
 
   edit(id: number) {
-    this.client =  {...this.clientService.findById(id)};
+    this.clientService.findById(id).subscribe(resp => {
+      this.client = resp;
+    });
 
     if(!this.client.adresse) {
       this.client.adresse = new Adresse();
     }
+
+    this.reloadAdresseOrphans();
   }
 
   save() {
     this.clientService.save(this.client);
+    this.cancel();
   }
 
   delete(id: number) {
@@ -48,5 +57,13 @@ export class ClientComponent implements OnInit {
 
   cancel() {
     this.client = null;
+  }
+
+  reloadAdresseOrphans() {
+    this.adresseService.findAllOrphans().subscribe( 
+      resp => {
+        this.adressesOrphan = resp;
+      }
+    )
   }
 }
