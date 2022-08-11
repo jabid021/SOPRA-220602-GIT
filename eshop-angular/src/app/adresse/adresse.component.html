@@ -1,0 +1,58 @@
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Liste des adresses</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Rue</th>
+                    <th>Code postal</th>
+                    <th>Ville</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let adresse of list()">
+                    <td>{{adresse.id}}</td>
+                    <td>{{adresse.rue}}</td>
+                    <td>{{adresse.codePostal}}</td>
+                    <td>{{adresse.ville}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-primary" (click)="edit(adresse.id)"><i
+                                    class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger" (click)="delete(adresse.id)"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="add()"><i
+            class="bi bi-plus-square"></i></a>
+    </div>
+</div>
+
+<div class="card mt-3" *ngIf="adresse">
+    <div class="card-header bg-primary text-white display-6">Edition d'une adresse</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="rue">Rue:</label> <input type="text" class="form-control" id="rue" name="rue" [(ngModel)]="adresse.rue" />
+        </div>
+        <div class="form-group">
+            <label for="codePostal">Code postal:</label> <input type="text" class="form-control" id="codePostal" name="codePostal" [(ngModel)]="adresse.codePostal" />
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville:</label> <input type="text" class="form-control" id="ville" name="ville" [(ngModel)]="adresse.ville" />
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+        </div>
+    </div>
+</div>

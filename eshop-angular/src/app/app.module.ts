@@ -7,19 +7,22 @@ import { AppComponent } from './app.component';
 import { ClientComponent } from './client/client.component';
 import { ClientService } from './client/client.service';
 import { HomeComponent } from './home/home.component';
+import { AdresseComponent } from './adresse/adresse.component';
+import { AdresseService } from './adresse/adresse.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientComponent,
-    HomeComponent
+    HomeComponent,
+    AdresseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ClientService],
+  providers: [AdresseService, ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

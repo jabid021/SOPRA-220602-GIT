@@ -9,6 +9,7 @@
                     <th>Prénom</th>
                     <th>Age</th>
                     <th>Email</th>
+                    <th>Adresse</th>
                     <th></th>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                     <td>{{cli.prenom}}</td>
                     <td>{{cli.age}}</td>
                     <td>{{cli.email}}</td>
+                    <td>{{cli.adresse?.id}} {{cli.adresse?.rue}} {{cli.adresse?.codePostal}} {{cli.adresse?.ville}}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-primary" (click)="edit(cli.id)"><i
@@ -55,6 +57,13 @@
         </div>
         <div class="form-group">
             <label for="commentaires">Commentaires:</label> <textarea rows="4" class="form-control" id="commentaires" name="commentaires" [(ngModel)]="client.commentaires"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="adresse">Adresse:</label>
+            <select class="form-control" id="adresse" name="adresse" [(ngModel)]="client.adresse.id">
+                <option value="">Sélectionner une adresse</option>
+                <option *ngFor="let adr of listAdresse()" [value]="adr.id">({{adr.id}}) {{adr.rue}} {{adr.codePostal}} {{adr.ville}}</option>
+            </select>
         </div>
 
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Client } from '../model';
+import { Adresse, Client } from '../model';
 import { ClientService } from './client.service';
+import { AdresseService } from './../adresse/adresse.service';
 
 @Component({
   selector: 'app-client',
@@ -11,7 +12,7 @@ export class ClientComponent implements OnInit {
 
   client: Client;
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private adresseService: AdresseService) { }
 
   ngOnInit(): void {
   }
@@ -20,12 +21,21 @@ export class ClientComponent implements OnInit {
     return this.clientService.findAll();
   }
 
+  listAdresse(): Array<Adresse> {
+    return this.adresseService.findAll();
+  }
+
   add() {
     this.client = new Client();
+    this.client.adresse = new Adresse();
   }
 
   edit(id: number) {
     this.client =  {...this.clientService.findById(id)};
+
+    if(!this.client.adresse) {
+      this.client.adresse = new Adresse();
+    }
   }
 
   save() {
